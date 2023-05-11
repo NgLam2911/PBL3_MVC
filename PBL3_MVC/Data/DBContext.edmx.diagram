@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2c9e05e147a942b38dd47576ad89d1be" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="BookingBusModel.Account" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.Bill" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.Bus" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.BusStation" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.Customer" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.Role" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.Route" Width="1.5" PointX="9.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.Schedule" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingBusModel.Seat" Width="1.5" PointX="12" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="BookingBusModel.FK_Account_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_BusStation_ACCOUNT" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_Customer_ACCOUNT" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_Bill_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_Seat_Bill" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_Bus_BusStation" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_Schedule_Bus" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_Schedule_Route" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingBusModel.FK_Seat_Schedule" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
