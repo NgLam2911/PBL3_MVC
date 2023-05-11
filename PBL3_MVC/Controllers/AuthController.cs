@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,17 +23,20 @@ namespace PBL3_MVC.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SignIn(LoginModel model)
         {
             using (var _db = new BookingBusEntities())
             {
                 if (ModelState.IsValid)
                 {
-                    var Account = _db.Accounts.Where(account => account.UserName == model.username && account.Password == model.password).FirstOrDefault();
+                    var f_password = GetMD5(model.password);
+                    var Account = _db.Accounts.Where(account => account.UserName == model.username && account.Password == f_password).FirstOrDefault();
                     if (Account == null) {
                         ModelState.AddModelError("", "Nhập sai tài khoản hoặc mật khẩu");
                         return View(model);
                     }
+                    Session["UserName"] = Account.UserName;
                     return RedirectToAction("Index", "Home");
                 }
                 return View();
@@ -40,6 +45,51 @@ namespace PBL3_MVC.Controllers
         public ActionResult SignUp()
         {
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignUp(RegisterModel model)
+        {
+            using (var _db = new BookingBusEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    var check = _db.Accounts.FirstOrDefault(s => s.UserName == model.username);
+                    if (check == null)
+                    {
+                        model.password = GetMD5(model.password);
+
+                        var newAccount = _db.Accounts.Create();
+                        newAccount.UserName = model.username;
+                        newAccount.Password = model.password;
+                        _db.Accounts.Add(newAccount);
+                        _db.SaveChanges();
+
+                        var newCustomer = _db.Customers.Create();
+                        newCustomer.AccountID = _db.Accounts.FirstOrDefault(s => s.UserName == model.username).AccountID;
+                        newCustomer.Name = model.username;
+                        newCustomer.Email = model.email;
+                        _db.Customers.Add(newCustomer);
+                        _db.SaveChanges();
+
+                        return RedirectToAction("Index", "Auth");
+                    }
+                }
+            }
+            return View();
+        }
+        private static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+            
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+            }
+            return byte2String;
         }
     }
 }
