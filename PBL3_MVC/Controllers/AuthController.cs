@@ -37,6 +37,15 @@ namespace PBL3_MVC.Controllers
                         return View(model);
                     }
                     Session["UserName"] = Account.UserName;
+                    Session["RoleID"] = Account.RoleID;
+                    if (Account.RoleID == 1)
+                    {
+                        return RedirectToAction("Index", "Home", new {area = "Admin"});
+                    }
+                    else if (Account.RoleID == 2)
+                    {
+                        return RedirectToAction("Index", "Home", new {area = "BusStation"});
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 return View();
@@ -74,9 +83,18 @@ namespace PBL3_MVC.Controllers
 
                         return RedirectToAction("Index", "Auth");
                     }
+                    else
+                    {
+                        ModelState.AddModelError("", "UserName đã tồn tại!!");
+                    }
                 }
             }
             return View();
+        }
+        public ActionResult SignOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Auth");
         }
         private static string GetMD5(string str)
         {
