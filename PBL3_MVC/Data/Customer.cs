@@ -20,7 +20,7 @@ namespace PBL3_MVC.Data
             this.Bills = new HashSet<Bill>();
         }
     
-        public string AccountID { get; set; }
+        public int AccountID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
     

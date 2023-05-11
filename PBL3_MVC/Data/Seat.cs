@@ -14,12 +14,12 @@ namespace PBL3_MVC.Data
     
     public partial class Seat
     {
-        public string SeatID { get; set; }
-        public string ScheduleID { get; set; }
+        public int SeatID { get; set; }
+        public int ScheduleID { get; set; }
         public int SeatNumber { get; set; }
         public double Price { get; set; }
         public bool Status { get; set; }
-        public string BillID { get; set; }
+        public Nullable<int> BillID { get; set; }
     
         public virtual Bill Bill { get; set; }
         public virtual Schedule Schedule { get; set; }

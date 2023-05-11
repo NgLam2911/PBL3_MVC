@@ -14,10 +14,10 @@ namespace PBL3_MVC.Data
     
     public partial class Account
     {
-        public string AccountID { get; set; }
+        public int AccountID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string RoleID { get; set; }
+        public Nullable<int> RoleID { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual BusStation BusStation { get; set; }

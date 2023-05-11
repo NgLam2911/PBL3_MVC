@@ -20,8 +20,8 @@ namespace PBL3_MVC.Data
             this.Seats = new HashSet<Seat>();
         }
     
-        public string BillID { get; set; }
-        public string CustomerID { get; set; }
+        public int BillID { get; set; }
+        public int CustomerID { get; set; }
         public System.DateTime OrderDate { get; set; }
         public bool Status { get; set; }
     

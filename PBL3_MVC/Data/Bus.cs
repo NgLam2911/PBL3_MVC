@@ -20,11 +20,10 @@ namespace PBL3_MVC.Data
             this.Schedules = new HashSet<Schedule>();
         }
     
-        public string BusID { get; set; }
-        public string BusStationID { get; set; }
+        public int BusID { get; set; }
+        public int BusStationID { get; set; }
         public string BusName { get; set; }
         public int NumberOfSeats { get; set; }
-        public string Description { get; set; }
     
         public virtual BusStation BusStation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

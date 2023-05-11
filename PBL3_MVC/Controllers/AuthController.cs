@@ -11,13 +11,6 @@ namespace PBL3_MVC.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly BookingBusEntities _db = new BookingBusEntities();
-
-        //public AuthController(BookingBusEntities db) { 
-        //    _db = db;
-        //}
-
-        // GET: Auth
         public ActionResult Index()
         {
             return View();
@@ -30,16 +23,19 @@ namespace PBL3_MVC.Controllers
         [HttpPost]
         public ActionResult SignIn(LoginModel model)
         {
-            if (ModelState.IsValid)
+            using (var _db = new BookingBusEntities())
             {
-                var Account = _db.Accounts.Where(account => account.UserName == model.username && account.Password == model.password).FirstOrDefault();
-                if (Account == null) {
-                    ModelState.AddModelError("", "Nhập sai tài khoản hoặc mật khẩu");
-                    return View(model);
+                if (ModelState.IsValid)
+                {
+                    var Account = _db.Accounts.Where(account => account.UserName == model.username && account.Password == model.password).FirstOrDefault();
+                    if (Account == null) {
+                        ModelState.AddModelError("", "Nhập sai tài khoản hoặc mật khẩu");
+                        return View(model);
+                    }
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index", "Home");
+                return View();
             }
-            return View();
         }
         public ActionResult SignUp()
         {

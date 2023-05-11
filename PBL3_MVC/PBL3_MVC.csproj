@@ -132,46 +132,46 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\Account.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Bill.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BookingBus.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingBus.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BookingBus.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BookingBus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingBus.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Bus.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\BusStation.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Customer.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\DBContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\DBContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\DBContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.edmx</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Role.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Route.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Schedule.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Seat.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>BookingBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,15 +196,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Data\DBContext.Context.tt">
+    <Content Include="Data\BookingBus.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBContext.Context.cs</LastGenOutput>
-      <DependentUpon>DBContext.edmx</DependentUpon>
+      <DependentUpon>BookingBus.edmx</DependentUpon>
+      <LastGenOutput>BookingBus.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\DBContext.tt">
+    <Content Include="Data\BookingBus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-      <LastGenOutput>DBContext.cs</LastGenOutput>
+      <DependentUpon>BookingBus.edmx</DependentUpon>
+      <LastGenOutput>BookingBus.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -215,12 +215,12 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Data\DBContext.edmx">
+    <EntityDeploy Include="Data\BookingBus.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>BookingBus.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Data\DBContext.edmx.diagram">
-      <DependentUpon>DBContext.edmx</DependentUpon>
+    <Content Include="Data\BookingBus.edmx.diagram">
+      <DependentUpon>BookingBus.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

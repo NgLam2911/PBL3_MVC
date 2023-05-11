@@ -20,7 +20,7 @@ namespace PBL3_MVC.Data
             this.Schedules = new HashSet<Schedule>();
         }
     
-        public string RouteID { get; set; }
+        public int RouteID { get; set; }
         public string RouteName { get; set; }
         public string Departure { get; set; }
         public string Destination { get; set; }

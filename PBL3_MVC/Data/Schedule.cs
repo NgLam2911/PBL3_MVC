@@ -20,9 +20,9 @@ namespace PBL3_MVC.Data
             this.Seats = new HashSet<Seat>();
         }
     
-        public string ScheduleID { get; set; }
-        public string BusID { get; set; }
-        public string RouteID { get; set; }
+        public int ScheduleID { get; set; }
+        public int BusID { get; set; }
+        public int RouteID { get; set; }
         public System.DateTime DepartureTime { get; set; }
         public System.DateTime DestinationTime { get; set; }
         public int Weekday { get; set; }
