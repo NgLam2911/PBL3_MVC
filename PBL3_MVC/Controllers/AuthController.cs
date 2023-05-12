@@ -1,5 +1,6 @@
 ﻿using PBL3_MVC.Data;
 using PBL3_MVC.Models;
+using PBL3_MVC.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -30,7 +31,7 @@ namespace PBL3_MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var f_password = GetMD5(model.password);
+                    var f_password = md5helper.string2md5(model.password);
                     var User = _db.Accounts.FirstOrDefault(account => account.UserName == model.username && account.Password == f_password);
                     if (User == null)
                     {
@@ -69,7 +70,7 @@ namespace PBL3_MVC.Controllers
                     var check = _db.Accounts.FirstOrDefault(s => s.UserName == model.username);
                     if (check == null)
                     {
-                        model.password = GetMD5(model.password);
+                        model.password = md5helper.string2md5(model.password);
 
                         var newAccount = _db.Accounts.Create();
                         newAccount.UserName = model.username;
@@ -89,7 +90,7 @@ namespace PBL3_MVC.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "UserName đã tồn tại!!");
+                        ModelState.AddModelError("", "Tên người dùng đã tồn tại!!");
                     }
                 }
             }
@@ -100,18 +101,6 @@ namespace PBL3_MVC.Controllers
             Session.Clear();
             return RedirectToAction("Index", "Auth");
         }
-        private static string GetMD5(string str)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = Encoding.UTF8.GetBytes(str);
-            byte[] targetData = md5.ComputeHash(fromData);
-            string byte2String = null;
-            
-            for (int i = 0; i < targetData.Length; i++)
-            {
-                byte2String += targetData[i].ToString("x2");
-            }
-            return byte2String;
-        }
+        
     }
 }
