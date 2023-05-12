@@ -11,7 +11,7 @@ namespace PBL3_MVC.Data.Tables
         {
             Seats = new HashSet<Seat>();
         }
-
+        [Key]
         public int ScheduleID { get; set; }
 
         public int BusID { get; set; }

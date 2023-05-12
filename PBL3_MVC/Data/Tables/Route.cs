@@ -11,7 +11,7 @@ namespace PBL3_MVC.Data.Tables
         {
             Schedules = new HashSet<Schedule>();
         }
-
+        [Key]
         public int RouteID { get; set; }
 
         [Required]

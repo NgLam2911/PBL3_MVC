@@ -10,6 +10,7 @@ namespace PBL3_MVC.Data
     {
         public Db(): base("name=BookingBus")
         {
+            Database.SetInitializer(new DbInitializer());
         }
 
         #region DbSets

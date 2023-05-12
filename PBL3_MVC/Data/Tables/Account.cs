@@ -9,6 +9,7 @@ namespace PBL3_MVC.Data.Tables
     [Table("Account")]
     public partial class Account
     {
+        [Key]
         public int AccountID { get; set; }
 
         [Required]

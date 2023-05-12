@@ -12,7 +12,6 @@ namespace PBL3_MVC.Data.Tables
             Bills = new HashSet<Bill>();
         }
 
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //Dont know who tf need this...
         public int AccountID { get; set; }
 

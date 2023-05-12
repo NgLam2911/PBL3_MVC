@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PBL3_MVC.Data.Tables
@@ -11,7 +12,7 @@ namespace PBL3_MVC.Data.Tables
         {
             Seats = new HashSet<Seat>();
         }
-
+        [Key]
         public int BillID { get; set; }
 
         public int CustomerID { get; set; }

@@ -11,12 +11,12 @@ namespace PBL3_MVC.Data.Tables
         {
             Accounts = new HashSet<Account>();
         }
-
+        [Key]
         public int RoleID { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string NameRole { get; set; }
+        public string RoleName { get; set; }
 
         public virtual ICollection<Account> Accounts { get; set; }
     }

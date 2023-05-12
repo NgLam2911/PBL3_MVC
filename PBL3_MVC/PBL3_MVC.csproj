@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Data\Db.cs" />
+    <Compile Include="Data\DbInitializer.cs" />
     <Compile Include="Data\Tables\Account.cs" />
     <Compile Include="Data\Tables\Bill.cs" />
     <Compile Include="Data\Tables\Bus.cs" />
