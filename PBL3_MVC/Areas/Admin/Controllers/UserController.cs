@@ -15,7 +15,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Index()
         {
-            List<UserModel> users = db.Customers.Where(c => c.Account.Role.RoleName != "Admin").Select(c => new UserModel {Id = c.Account.AccountID, UserName = c.Account.UserName, Email = c.Email, Password = c.Account.Password }).ToList();
+            List<UserModel> users = db.Customers.Where(c => c.Account.Role.RoleName != "Admin").Select(c => new UserModel { Id = c.Account.AccountID, UserName = c.Account.UserName, Email = c.Email, Password = c.Account.Password }).ToList();
 
             return View(users);
         }
@@ -69,7 +69,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
 
         // POST: Admin/User/Edit/5
         [HttpPost]
-        public ActionResult Edit( FormCollection collection)
+        public ActionResult Edit(FormCollection collection)
         {
             try
             {
@@ -83,19 +83,16 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             }
         }
         // POST: Admin/User/Delete/5
-        [HttpPost]
-        public ActionResult Delete(FormCollection collection)
+        public ActionResult Delete(int? id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var account = db.Accounts.Find(id);
+            db.Accounts.Remove(account);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "User");
         }
     }
 }
