@@ -10,19 +10,17 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Đặt vé xe trực tuyến", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Đặt vé xe trực tuyến", "Index", "Home", new { area = "BusStation" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("QL Người dùng", "Index", "User", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("QL Bến xe", "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("QL Xe", "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("QL Tuyến", "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;} 
-                    <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Quản lý Xe", "Index", "Home", new { area = "BusStation" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Quản lý Tuyến đường", "Index", "Home", new { area = "BusStation" }, new { @class = "nav-link" })</li>
+                    @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;}
+                    <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "BusStation" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Sign out", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>

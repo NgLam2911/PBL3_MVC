@@ -41,7 +41,7 @@ namespace PBL3_MVC.Controllers
                     Session["User"] = User;
                     if (User.Role == null) 
                     {
-                        return RedirectToAction("Index", "Auth");
+                        return RedirectToAction("Index", "Home", new { area = "Customer" });
                     }
                     if (User.Role.RoleName == "Admin")
                     {
