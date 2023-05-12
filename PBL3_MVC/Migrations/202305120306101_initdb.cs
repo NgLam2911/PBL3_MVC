@@ -24,7 +24,7 @@
                 "dbo.BusStation",
                 c => new
                     {
-                        BusStationID = c.Int(nullable: false, identity: true),
+                        BusStationID = c.Int(nullable: false),
                         AccountID = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
                     })
@@ -108,7 +108,7 @@
                 "dbo.Customer",
                 c => new
                     {
-                        CustomerID = c.Int(nullable: false, identity: true),
+                        CustomerID = c.Int(nullable: false),
                         AccountID = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
                         Email = c.String(nullable: false, maxLength: 50),
