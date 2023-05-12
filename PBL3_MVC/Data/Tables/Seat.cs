@@ -1,14 +1,12 @@
-namespace PBL3_MVC.DataTemp
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace PBL3_MVC.Data.Tables
+{
     [Table("Seat")]
     public partial class Seat
     {
+        [Key]
         public int SeatID { get; set; }
 
         public int ScheduleID { get; set; }

@@ -133,49 +133,16 @@
     <Compile Include="Areas\Admin\Controllers\CustomersController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Data\Account.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Bill.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\BookingBus.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookingBus.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\BookingBus.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\BookingBus.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BookingBus.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Bus.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\BusStation.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Customer.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Role.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Route.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Schedule.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Seat.cs">
-      <DependentUpon>BookingBus.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Data\Db.cs" />
+    <Compile Include="Data\Tables\Account.cs" />
+    <Compile Include="Data\Tables\Bill.cs" />
+    <Compile Include="Data\Tables\Bus.cs" />
+    <Compile Include="Data\Tables\BusStation.cs" />
+    <Compile Include="Data\Tables\Customer.cs" />
+    <Compile Include="Data\Tables\Role.cs" />
+    <Compile Include="Data\Tables\Route.cs" />
+    <Compile Include="Data\Tables\Schedule.cs" />
+    <Compile Include="Data\Tables\Seat.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,16 +167,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Data\BookingBus.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BookingBus.edmx</DependentUpon>
-      <LastGenOutput>BookingBus.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\BookingBus.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BookingBus.edmx</DependentUpon>
-      <LastGenOutput>BookingBus.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -219,13 +176,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Data\BookingBus.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BookingBus.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\BookingBus.edmx.diagram">
-      <DependentUpon>BookingBus.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -267,7 +217,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="DataTemp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

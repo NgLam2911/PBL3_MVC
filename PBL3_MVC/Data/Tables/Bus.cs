@@ -1,15 +1,12 @@
-namespace PBL3_MVC.DataTemp
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace PBL3_MVC.Data.Tables
+{
     [Table("Bus")]
     public partial class Bus
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bus()
         {
             Schedules = new HashSet<Schedule>();
@@ -27,7 +24,6 @@ namespace PBL3_MVC.DataTemp
 
         public virtual BusStation BusStation { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

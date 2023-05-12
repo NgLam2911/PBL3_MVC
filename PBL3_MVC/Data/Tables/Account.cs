@@ -1,4 +1,4 @@
-namespace PBL3_MVC.DataTemp
+namespace PBL3_MVC.Data.Tables
 {
     using System;
     using System.Collections.Generic;

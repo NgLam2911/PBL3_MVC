@@ -2,16 +2,17 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
+using PBL3_MVC.Data.Tables;
 
-namespace PBL3_MVC.DataTemp
+namespace PBL3_MVC.Data
 {
-    public partial class TempDBContext : DbContext
+    public class Db: DbContext
     {
-        public TempDBContext()
-            : base("name=TempDBContext")
+        public Db(): base("name=BookingBus")
         {
         }
 
+        #region DbSets
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<Bus> Buses { get; set; }
@@ -21,9 +22,11 @@ namespace PBL3_MVC.DataTemp
         public virtual DbSet<Route> Routes { get; set; }
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Seat> Seats { get; set; }
+        #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //For relationship between tables
             modelBuilder.Entity<Account>()
                 .Property(e => e.Password)
                 .IsFixedLength();

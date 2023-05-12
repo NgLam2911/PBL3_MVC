@@ -26,24 +26,25 @@ namespace PBL3_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignIn(LoginModel model)
         {
-            using (var _db = new BookingBusEntities())
+            using (var _db = new Db())
             {
                 if (ModelState.IsValid)
                 {
                     var f_password = GetMD5(model.password);
-                    var User = _db.Accounts.Where(account => account.UserName == model.username && account.Password == f_password).FirstOrDefault();
-                    if (User == null) {
+                    var User = _db.Accounts.FirstOrDefault(account => account.UserName == model.username && account.Password == f_password);
+                    if (User == null)
+                    {
                         ModelState.AddModelError("", "Nhập sai tài khoản hoặc mật khẩu");
                         return View(model);
                     }
                     Session["User"] = User;
                     if (User.RoleID == 1)
                     {
-                        return RedirectToAction("Index", "Home", new {area = "Admin"});
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
                     else if (User.RoleID == 2)
                     {
-                        return RedirectToAction("Index", "Home", new {area = "BusStation"});
+                        return RedirectToAction("Index", "Home", new { area = "BusStation" });
                     }
                     return RedirectToAction("Index", "Auth");
                 }
@@ -58,7 +59,7 @@ namespace PBL3_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(RegisterModel model)
         {
-            using (var _db = new BookingBusEntities())
+            using (var _db = new Db())
             {
                 if (ModelState.IsValid)
                 {
