@@ -31,22 +31,21 @@ namespace PBL3_MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     var f_password = GetMD5(model.password);
-                    var Account = _db.Accounts.Where(account => account.UserName == model.username && account.Password == f_password).FirstOrDefault();
-                    if (Account == null) {
+                    var User = _db.Accounts.Where(account => account.UserName == model.username && account.Password == f_password).FirstOrDefault();
+                    if (User == null) {
                         ModelState.AddModelError("", "Nhập sai tài khoản hoặc mật khẩu");
                         return View(model);
                     }
-                    Session["UserName"] = Account.UserName;
-                    Session["RoleID"] = Account.RoleID;
-                    if (Account.RoleID == 1)
+                    Session["User"] = User;
+                    if (User.RoleID == 1)
                     {
                         return RedirectToAction("Index", "Home", new {area = "Admin"});
                     }
-                    else if (Account.RoleID == 2)
+                    else if (User.RoleID == 2)
                     {
                         return RedirectToAction("Index", "Home", new {area = "BusStation"});
                     }
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Auth");
                 }
                 return View();
             }

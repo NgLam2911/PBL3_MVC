@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PBL3_MVC.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,22 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            Account userSession = (Account)Session["User"];
+            using (var _db = new BookingBusEntities())
+            {
+                if (userSession == null)
+                {
+                    return Redirect("/");
+                }
+                else if (userSession != null)
+                {
+                    var count = _db.Accounts.Count(m => m.AccountID == userSession.AccountID & m.RoleID == 1);
+                    if (count == 0)
+                    {
+                        return Redirect("/");
+                    }
+                }
+            }
             return View();
         }
     }
