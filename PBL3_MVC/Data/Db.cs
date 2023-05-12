@@ -8,7 +8,7 @@ namespace PBL3_MVC.Data
 {
     public class Db: DbContext
     {
-        public Db(): base("name=BookingBus")
+        public Db(): base("name=PBL3_MVC")
         {
             Database.SetInitializer(new DbInitializer());
         }

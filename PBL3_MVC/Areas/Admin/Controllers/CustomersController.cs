@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PBL3_MVC.Data;
+using PBL3_MVC.Data.Tables;
 
 namespace PBL3_MVC.Areas.Admin.Controllers
 {
     public class CustomersController : Controller
     {
-        private BookingBusEntities db = new BookingBusEntities();
+        private Db db = new Db();
 
         // GET: Admin/Customers
         public ActionResult Index()

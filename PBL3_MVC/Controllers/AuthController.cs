@@ -38,15 +38,18 @@ namespace PBL3_MVC.Controllers
                         return View(model);
                     }
                     Session["User"] = User;
-                    if (User.RoleID == 1)
+                    if (User.Role == null) 
+                    {
+                        return RedirectToAction("Index", "Auth");
+                    }
+                    if (User.Role.RoleName == "Admin")
                     {
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
-                    else if (User.RoleID == 2)
+                    else if (User.Role.RoleName == "BusStation")
                     {
                         return RedirectToAction("Index", "Home", new { area = "BusStation" });
                     }
-                    return RedirectToAction("Index", "Auth");
                 }
                 return View();
             }
@@ -75,7 +78,8 @@ namespace PBL3_MVC.Controllers
                         _db.SaveChanges();
 
                         var newCustomer = _db.Customers.Create();
-                        newCustomer.AccountID = _db.Accounts.FirstOrDefault(s => s.UserName == model.username).AccountID;
+                        newCustomer.Account = _db.Accounts.FirstOrDefault(s => s.UserName == model.username);
+                        newCustomer.Account.Customer = newCustomer;
                         newCustomer.Name = model.username;
                         newCustomer.Email = model.email;
                         _db.Customers.Add(newCustomer);

@@ -1,4 +1,5 @@
 ﻿using PBL3_MVC.Data;
+using PBL3_MVC.Data.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         public ActionResult Index()
         {
             Account userSession = (Account)Session["User"];
-            using (var _db = new BookingBusEntities())
+            using (var _db = new Db())
             {
                 if (userSession == null)
                 {

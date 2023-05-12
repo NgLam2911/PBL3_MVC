@@ -12,6 +12,9 @@ namespace PBL3_MVC.Data.Tables
             Buses = new HashSet<Bus>();
         }
 
+        [Key]
+        public int BusStationID { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int AccountID { get; set; }
 
