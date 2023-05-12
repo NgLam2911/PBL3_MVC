@@ -45,7 +45,6 @@ namespace PBL3_MVC.Areas.Admin.Controllers
 
                     var newCustomer = db.Customers.Create();
                     newCustomer.Account = db.Accounts.FirstOrDefault(s => s.UserName == model.UserName);
-                    newCustomer.Account.Customer = newCustomer;
                     newCustomer.Name = model.UserName;
                     newCustomer.Email = model.Email;
                     db.Customers.Add(newCustomer);
@@ -62,25 +61,42 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Edit/5
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var customer = db.Customers.Find(id);
+            UserModel user = new UserModel { Id = customer.CustomerID, Email = customer.Email, UserName = customer.Account.UserName };
+            return View(user);
         }
 
         // POST: Admin/User/Edit/5
         [HttpPost]
-        public ActionResult Edit(FormCollection collection)
+        public ActionResult Edit(UserModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var check = db.Accounts.FirstOrDefault(s => s.UserName == model.UserName && s.AccountID != model.Id);
+                if (check == null)
+                {
+                    model.Password = md5helper.string2md5(model.Password);
 
-                return RedirectToAction("Index");
+                    var accountEdit = db.Accounts.FirstOrDefault(s => s.AccountID == model.Id);
+                    accountEdit.UserName = model.UserName;
+                    accountEdit.Password = model.Password;
+                    db.SaveChanges();
+
+                    var customerEdit = db.Customers.FirstOrDefault(s => s.CustomerID == model.Id);
+                    customerEdit.Name = model.UserName;
+                    customerEdit.Email = model.Email;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên người dùng đã tồn tại!!");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
         // POST: Admin/User/Delete/5
         public ActionResult Delete(int? id)
