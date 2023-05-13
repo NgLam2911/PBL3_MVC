@@ -22,7 +22,7 @@
                     <li>@Html.ActionLink("Quản lý Lịch trình", "Index", "Home", new { area = "BusStationArea" }, new { @class = "nav-link" })</li>
                     @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;}
                     <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "BusStationArea" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Sign out", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Đăng xuất", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
