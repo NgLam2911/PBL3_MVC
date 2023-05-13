@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PBL3_MVC.Data.Tables.Bus>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BusStation.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfSeats)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusStation.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfSeats)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BusID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BusID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BusID })
+        </td>
+    </tr>
+}
+
+</table>
