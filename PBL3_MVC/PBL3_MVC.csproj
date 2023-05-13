@@ -133,6 +133,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\BusStation\BusStationAreaRegistration.cs" />
+    <Compile Include="Areas\BusStation\Controllers\BusesController.cs" />
     <Compile Include="Areas\BusStation\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
@@ -200,6 +201,11 @@
     <Content Include="Areas\BusStation\Views\Home\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Areas\Customer\Views\Home\Index.cshtml" />
+    <Content Include="Areas\BusStation\Views\Buses\Create.cshtml" />
+    <Content Include="Areas\BusStation\Views\Buses\Delete.cshtml" />
+    <Content Include="Areas\BusStation\Views\Buses\Details.cshtml" />
+    <Content Include="Areas\BusStation\Views\Buses\Edit.cshtml" />
+    <Content Include="Areas\BusStation\Views\Buses\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
