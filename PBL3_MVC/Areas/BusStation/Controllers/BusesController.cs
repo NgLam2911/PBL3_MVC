@@ -18,7 +18,7 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
         // GET: BusStation/Buses
         public ActionResult Index()
         {
-            var buses = db.Buses.Include(b => b.BusStation);
+            var buses = db.Buses.Select(b => new  {b.BusID, b.BusName, b.NumberOfSeats, b.BusStation.Name});
             return View(buses.ToList());
         }
 
@@ -104,15 +104,6 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
             db.Buses.Remove(bus);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
