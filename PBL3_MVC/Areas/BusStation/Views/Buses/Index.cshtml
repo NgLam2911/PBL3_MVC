@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PBL3_MVC.Data.Tables.Bus>
+﻿@model IEnumerable<PBL3_MVC.Models.BusModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,11 +13,11 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BusStation.Name)
+            @Html.DisplayNameFor(model => model.BusStationName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BusName)
-        </th>
+        </th>s
         <th>
             @Html.DisplayNameFor(model => model.NumberOfSeats)
         </th>
@@ -27,7 +27,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BusStation.Name)
+            @Html.DisplayFor(modelItem => item.BusStationName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BusName)
@@ -37,7 +37,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BusID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BusID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.BusID })
         </td>
     </tr>

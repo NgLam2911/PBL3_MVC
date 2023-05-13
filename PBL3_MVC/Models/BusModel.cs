@@ -6,7 +6,7 @@ using System.Web;
 
 namespace PBL3_MVC.Models
 {
-    public class ListBusModel
+    public class BusModel
     {
         public int BusID { get; set; }
         public string BusName { get; set; }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PBL3_MVC.Data;
 using PBL3_MVC.Data.Tables;
+using PBL3_MVC.Models;
 
 namespace PBL3_MVC.Areas.BusStation.Controllers
 {
@@ -18,7 +19,7 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
         // GET: BusStation/Buses
         public ActionResult Index()
         {
-            var buses = db.Buses.Select(b => new  {b.BusID, b.BusName, b.NumberOfSeats, b.BusStation.Name});
+            var buses = db.Buses.Select(b => new BusModel() {BusID = b.BusID,BusName = b.BusName,NumberOfSeats = b.NumberOfSeats,BusStationName = b.BusStation.Name});
             return View(buses.ToList());
         }
 

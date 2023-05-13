@@ -203,7 +203,6 @@
     <Content Include="Areas\Customer\Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Areas\Customer\Views\Home\Index.cshtml" />
     <Content Include="Areas\BusStation\Views\Buses\Create.cshtml" />
-    <Content Include="Areas\BusStation\Views\Buses\Delete.cshtml" />
     <Content Include="Areas\BusStation\Views\Buses\Edit.cshtml" />
     <Content Include="Areas\BusStation\Views\Buses\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
