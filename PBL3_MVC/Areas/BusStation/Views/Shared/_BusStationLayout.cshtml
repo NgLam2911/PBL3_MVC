@@ -17,7 +17,7 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Quản lý Xe", "Index", "Home", new { area = "BusStation" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Quản lý Xe", "Index", "Buses", new { area = "BusStation" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Quản lý Tuyến đường", "Index", "Home", new { area = "BusStation" }, new { @class = "nav-link" })</li>
                     @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;}
                     <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "BusStation" }, new { @class = "nav-link" })</li>

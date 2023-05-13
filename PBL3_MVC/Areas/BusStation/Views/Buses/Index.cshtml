@@ -1,23 +1,23 @@
-﻿@model IEnumerable<PBL3_MVC.Models.BusModel>
+﻿@model IEnumerable<PBL3_MVC.Data.Tables.Bus>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+    ViewBag.Title = "Quản lý Xe";
+    Layout = "~/Areas/BusStation/Views/Shared/_BusStationLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý Xe</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm xe mới", "Create",  "Buses", new { area = "BusStation" }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BusStationName)
+            @Html.DisplayNameFor(model => model.BusStation.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BusName)
-        </th>s
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.NumberOfSeats)
         </th>
@@ -27,7 +27,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BusStationName)
+            @Html.DisplayFor(modelItem => item.BusStation.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BusName)
@@ -37,7 +37,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BusID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
         </td>
     </tr>
 }

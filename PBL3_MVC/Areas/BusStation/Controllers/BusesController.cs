@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using PBL3_MVC.Data;
 using PBL3_MVC.Data.Tables;
-using PBL3_MVC.Models;
 
 namespace PBL3_MVC.Areas.BusStation.Controllers
 {
@@ -19,14 +18,14 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
         // GET: BusStation/Buses
         public ActionResult Index()
         {
-            var buses = db.Buses.Select(b => new BusModel() {BusID = b.BusID,BusName = b.BusName,NumberOfSeats = b.NumberOfSeats,BusStationName = b.BusStation.Name});
+            var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
+            var buses = db.Buses.Include(b => b.BusStation).Where(b => b.BusStation.Account.UserName == userSession.UserName);
             return View(buses.ToList());
         }
 
         // GET: BusStation/Buses/Create
         public ActionResult Create()
         {
-            ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name");
             return View();
         }
 
@@ -39,6 +38,8 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
+                bus.BusStationID = userSession.AccountID;
                 db.Buses.Add(bus);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,7 +61,6 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name", bus.BusStationID);
             return View(bus);
         }
 
@@ -73,6 +73,8 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
+                bus.BusStationID = userSession.AccountID;
                 db.Entry(bus).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -81,25 +83,8 @@ namespace PBL3_MVC.Areas.BusStation.Controllers
             return View(bus);
         }
 
-        // GET: BusStation/Buses/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bus bus = db.Buses.Find(id);
-            if (bus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bus);
-        }
-
         // POST: BusStation/Buses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int? id)
         {
             Bus bus = db.Buses.Find(id);
             db.Buses.Remove(bus);
