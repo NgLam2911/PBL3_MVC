@@ -135,6 +135,7 @@
     <Compile Include="Areas\BusStationArea\BusStationAreaRegistration.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\BusesController.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\RoutesController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -204,6 +205,9 @@
     <Content Include="Areas\BusStationArea\Views\Buses\Create.cshtml" />
     <Content Include="Areas\BusStationArea\Views\Buses\Edit.cshtml" />
     <Content Include="Areas\BusStationArea\Views\Buses\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Routes\Create.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Routes\Edit.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Routes\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -11,84 +11,85 @@ using PBL3_MVC.Data.Tables;
 
 namespace PBL3_MVC.Areas.BusStationArea.Controllers
 {
-    public class BusesController : Controller
+    public class RoutesController : Controller
     {
         private Db db = new Db();
 
-        // GET: BusStation/Buses
+        // GET: BusStationArea/Routes
         public ActionResult Index()
         {
-            var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
-            var buses = db.Buses.Include(b => b.BusStation).Where(b => b.BusStation.Account.UserName == userSession.UserName);
-            return View(buses.ToList());
+            return View(db.Routes.ToList());
         }
 
-        // GET: BusStation/Buses/Create
+        // GET: BusStationArea/Routes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BusStation/Buses/Create
+        // POST: BusStationArea/Routes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
+        public ActionResult Create([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
         {
             if (ModelState.IsValid)
             {
-                var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
-                bus.BusStationID = userSession.AccountID;
-                db.Buses.Add(bus);
+                db.Routes.Add(route);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name", bus.BusStationID);
-            return View(bus);
+            return View(route);
         }
 
-        // GET: BusStation/Buses/Edit/5
+        // GET: BusStationArea/Routes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bus bus = db.Buses.Find(id);
-            if (bus == null)
+            Route route = db.Routes.Find(id);
+            if (route == null)
             {
                 return HttpNotFound();
             }
-            return View(bus);
+            return View(route);
         }
 
-        // POST: BusStation/Buses/Edit/5
+        // POST: BusStationArea/Routes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
+        public ActionResult Edit([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
         {
             if (ModelState.IsValid)
             {
-                var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
-                bus.BusStationID = userSession.AccountID;
-                db.Entry(bus).State = EntityState.Modified;
+                db.Entry(route).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name", bus.BusStationID);
-            return View(bus);
+            return View(route);
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            Bus bus = db.Buses.Find(id);
-            db.Buses.Remove(bus);
+            Route route = db.Routes.Find(id);
+            db.Routes.Remove(route);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
