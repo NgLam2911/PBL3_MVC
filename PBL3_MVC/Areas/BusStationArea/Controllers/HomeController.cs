@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PBL3_MVC.Areas.BusStation.Controllers
+namespace PBL3_MVC.Areas.BusStationArea.Controllers
 {
     public class HomeController : Controller
     {

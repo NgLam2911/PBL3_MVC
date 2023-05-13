@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "Quản lý Xe";
-    Layout = "~/Areas/BusStation/Views/Shared/_BusStationLayout.cshtml";
+    Layout = "~/Areas/BusStationArea/Views/Shared/_BusStationLayout.cshtml";
 }
 
 <h2>Quản lý Xe</h2>
 
 <p>
-    @Html.ActionLink("Thêm xe mới", "Create",  "Buses", new { area = "BusStation" }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Thêm xe mới", "Create",  "Buses", new { area = "BusStationArea" }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>

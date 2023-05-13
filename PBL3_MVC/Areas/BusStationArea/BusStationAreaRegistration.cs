@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace PBL3_MVC.Areas.BusStation
+namespace PBL3_MVC.Areas.BusStationArea
 {
     public class BusStationAreaRegistration : AreaRegistration 
     {
@@ -8,15 +8,15 @@ namespace PBL3_MVC.Areas.BusStation
         {
             get 
             {
-                return "BusStation";
+                return "BusStationArea";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "BusStation_default",
-                "BusStation/{controller}/{action}/{id}",
+                "BusStationArea_default",
+                "BusStationArea/{controller}/{action}/{id}",
                 new {controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

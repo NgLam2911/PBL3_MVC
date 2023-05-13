@@ -132,9 +132,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
-    <Compile Include="Areas\BusStation\BusStationAreaRegistration.cs" />
-    <Compile Include="Areas\BusStation\Controllers\BusesController.cs" />
-    <Compile Include="Areas\BusStation\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BusStationArea\BusStationAreaRegistration.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\BusesController.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -195,15 +195,15 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
-    <Content Include="Areas\BusStation\Views\web.config" />
+    <Content Include="Areas\BusStationArea\Views\web.config" />
     <Content Include="Areas\Customer\Views\web.config" />
-    <Content Include="Areas\BusStation\Views\Shared\_BusStationLayout.cshtml" />
-    <Content Include="Areas\BusStation\Views\Home\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Shared\_BusStationLayout.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Home\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Areas\Customer\Views\Home\Index.cshtml" />
-    <Content Include="Areas\BusStation\Views\Buses\Create.cshtml" />
-    <Content Include="Areas\BusStation\Views\Buses\Edit.cshtml" />
-    <Content Include="Areas\BusStation\Views\Buses\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Buses\Create.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Buses\Edit.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Buses\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -234,9 +234,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\BusStation\Data\" />
+    <Folder Include="Areas\BusStationArea\Data\" />
     <Folder Include="Areas\Customer\Data\" />
-    <Folder Include="Views\BusStation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

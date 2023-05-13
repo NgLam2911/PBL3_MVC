@@ -49,7 +49,7 @@ namespace PBL3_MVC.Controllers
                     }
                     else if (User.Role.RoleName == "BusStation")
                     {
-                        return RedirectToAction("Index", "Home", new { area = "BusStation" });
+                        return RedirectToAction("Index", "Home", new { area = "BusStationArea" });
                     }
                 }
                 return View();

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using PBL3_MVC.Data;
 using PBL3_MVC.Data.Tables;
 
-namespace PBL3_MVC.Areas.BusStation.Controllers
+namespace PBL3_MVC.Areas.BusStationArea.Controllers
 {
     public class BusesController : Controller
     {
