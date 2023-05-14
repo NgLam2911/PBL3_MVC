@@ -46,13 +46,13 @@ namespace PBL3_MVC.Data
             modelBuilder.Entity<BusStation>()
                 .HasMany(e => e.Buses)
                 .WithRequired(e => e.BusStation)
-                .HasForeignKey(e => e.BusStationID)
+                .HasForeignKey(e => e.BusStationID) //EYYO ????
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Customer>()
                 .HasMany(e => e.Bills)
                 .WithRequired(e => e.Customer)
-                .HasForeignKey(e => e.CustomerID)
+                .HasForeignKey(e => e.CustomerID) //EYYO ????
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Route>()
