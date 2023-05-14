@@ -28,8 +28,6 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         }
 
         // POST: BusStationArea/Routes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
@@ -60,8 +58,6 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         }
 
         // POST: BusStationArea/Routes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)

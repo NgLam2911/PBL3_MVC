@@ -1,12 +1,10 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
 using PBL3_MVC.Data.Tables;
 
 namespace PBL3_MVC.Data
 {
-    public class Db: DbContext
+    //Sealed class cannot be inherited, just like "final" in PHP ...
+    public sealed class Db: DbContext
     {
         public Db(): base("name=PBL3_MVC")
         {
@@ -14,20 +12,20 @@ namespace PBL3_MVC.Data
         }
 
         #region DbSets
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Bill> Bills { get; set; }
-        public virtual DbSet<Bus> Buses { get; set; }
-        public virtual DbSet<BusStation> BusStations { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Route> Routes { get; set; }
-        public virtual DbSet<Schedule> Schedules { get; set; }
-        public virtual DbSet<Seat> Seats { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Bill> Bills { get; set; }
+        public DbSet<Bus> Buses { get; set; }
+        public DbSet<BusStation> BusStations { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Route> Routes { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Seat> Seats { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //For relationship between tables
+            //For relationship and properties in tables
             modelBuilder.Entity<Account>()
                 .Property(e => e.Password)
                 .IsFixedLength();
@@ -43,7 +41,7 @@ namespace PBL3_MVC.Data
             modelBuilder.Entity<Bus>()
                 .HasMany(e => e.Schedules)
                 .WithRequired(e => e.Bus)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false); //Wtf ?
 
             modelBuilder.Entity<BusStation>()
                 .HasMany(e => e.Buses)

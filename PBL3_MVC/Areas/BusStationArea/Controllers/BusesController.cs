@@ -30,8 +30,6 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         }
 
         // POST: BusStation/Buses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
@@ -65,8 +63,6 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         }
 
         // POST: BusStation/Buses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)

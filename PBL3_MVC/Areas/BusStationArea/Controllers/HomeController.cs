@@ -20,7 +20,7 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
                 {
                     return Redirect("/");
                 }
-                else if (userSession != null)
+                else
                 {
                     var count = _db.Accounts.Count(m => m.AccountID == userSession.AccountID && m.RoleID == 2);
                     if (count == 0)
