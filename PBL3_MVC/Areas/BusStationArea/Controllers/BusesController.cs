@@ -79,7 +79,6 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name", bus.BusStationID);
             return View(bus);
         }
 

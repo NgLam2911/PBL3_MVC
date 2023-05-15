@@ -8,7 +8,7 @@
 <h2>Danh sách tuyến</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", "Routes", new { area = "BusStationArea" }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Tạo tuyến mới", "Create", "Routes", new { area = "BusStationArea" }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -37,7 +37,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.RouteID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RouteID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.RouteID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
         </td>
     </tr>
 }
