@@ -8,9 +8,9 @@ namespace PBL3_MVC.Models
 {
     public class LoginModel
     {
-        [Required]
+        [Required(ErrorMessage = "Tên tài khoản không được để trống!")]
         public string username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu không được để trống!")]
         public string password { get; set; }
     }
 }

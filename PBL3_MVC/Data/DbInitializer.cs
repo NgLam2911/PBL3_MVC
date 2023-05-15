@@ -12,6 +12,7 @@ namespace PBL3_MVC.Data
                 new Role() {RoleID = 1, RoleName = "Admin"},
                 new Role() {RoleID = 2, RoleName = "BusStation"},
             });
+            //TODO: Add default admin account
         }
     }
 }

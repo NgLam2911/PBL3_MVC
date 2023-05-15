@@ -10,11 +10,11 @@ namespace PBL3_MVC.Models
     {
         [Required]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Tên tài khoản không được để trống!")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu không được để trống!")]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email không được để trống!")]
         public string Email { get; set; }
     }
 }

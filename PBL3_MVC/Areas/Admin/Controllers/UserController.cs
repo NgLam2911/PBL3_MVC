@@ -28,6 +28,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
 
         // POST: Admin/User/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UserModel model)
         {
             if (ModelState.IsValid)
@@ -70,6 +71,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
 
         // POST: Admin/User/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(UserModel model)
         {
             if (ModelState.IsValid)

@@ -8,11 +8,11 @@ namespace PBL3_MVC.Models
 {
     public class RegisterModel
     {
-        [Required]
+        [Required(ErrorMessage = "Tên tài khoản không được để trống!")]
         public string username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu không được để trống!")]
         public string password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email không được để trống!")]
         [EmailAddress]
         public string email { get; set; }
     }
