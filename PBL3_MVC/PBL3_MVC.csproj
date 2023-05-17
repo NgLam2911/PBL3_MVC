@@ -215,6 +215,7 @@
     <Content Include="Areas\BusStationArea\Views\Schedules\Details.cshtml" />
     <Content Include="Areas\BusStationArea\Views\Schedules\EditSeat.cshtml" />
     <Content Include="Areas\BusStationArea\Views\Schedules\Create.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Schedules\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
