@@ -72,30 +72,51 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         [HttpPost]
         public ActionResult Create(ScheduleModel schedule)
         {
-            if (ModelState.IsValid)
+            if (schedule.DestinationTime > schedule.DepatureTime && schedule.DepatureTime > DateTime.Now)
             {
-                //Init db
-                var bus = db.Buses.Where(b => b.BusName == schedule.BusName).FirstOrDefault();
-                //TODO: Bus is null
-                var route = db.Routes.Where(r => r.RouteName == schedule.RouteName).FirstOrDefault();
-                //TODO: Route is null
-                var newSchedule = db.Schedules.Create();
-                newSchedule.Bus = bus;
-                newSchedule.Route = route;
-                newSchedule.DepartureTime = schedule.DepatureTime;
-                newSchedule.DestinationTime = schedule.DestinationTime;
-                newSchedule.Status = schedule.Status;
-
-                for (int i = 0; i < bus.NumberOfSeats; i++) 
+                if (ModelState.IsValid)
                 {
-                    var seat = db.Seats.Create();
-                    seat.Schedule = newSchedule;
-                    seat.SeatNumber = i + 1;
-                    seat.Status = false;
-                    seat.Price = schedule.Price;
-                    seat.Bill = null;
+                    var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
+                    //Init db
+                    var bus = db.Buses.Where(b => b.BusName == schedule.BusName && b.BusStation.BusStationID == userSession.AccountID).FirstOrDefault();
+                    var route = db.Routes.Where(r => r.RouteName == schedule.RouteName).FirstOrDefault();
+
+                    if (bus == null)
+                    {
+                        ModelState.AddModelError("", "Không có tên xe này!!");
+                        return View(schedule);
+                    }
+                    else if (route == null)
+                    {
+                        ModelState.AddModelError("", "Không có tên tuyến đường này!!");
+                        return View(schedule);
+                    }
+
+                    var newSchedule = db.Schedules.Create();
+                    newSchedule.Bus = bus;
+                    newSchedule.Route = route;
+                    newSchedule.DepartureTime = schedule.DepatureTime;
+                    newSchedule.DestinationTime = schedule.DestinationTime;
+                    newSchedule.Status = schedule.Status;
+                    db.Schedules.Add(newSchedule);
+
+                    for (int i = 0; i < bus.NumberOfSeats; i++)
+                    {
+                        var seat = db.Seats.Create();
+                        seat.Schedule = newSchedule;
+                        seat.SeatNumber = i + 1;
+                        seat.Status = false;
+                        seat.Price = schedule.Price;
+                        seat.Bill = null;
+                        db.Seats.Add(seat);
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                db.SaveChanges();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Thời gian cho lịch trình không phù hợp!!");
             }
             return View(schedule);
         }
