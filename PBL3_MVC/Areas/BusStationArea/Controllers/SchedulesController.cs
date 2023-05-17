@@ -147,7 +147,14 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         // GET: BusStationArea/Schedules/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            List<Seat> seats = db.Seats.Where(s => s.ScheduleID == id).ToList();
+            db.Seats.RemoveRange(seats);
+
+            Schedule schedule = db.Schedules.Find(id);
+            db.Schedules.Remove(schedule);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
