@@ -9,6 +9,7 @@ using System.Net;
 using System.Security.AccessControl;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace PBL3_MVC.Areas.BusStationArea.Controllers
 {
@@ -124,24 +125,74 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         // GET: BusStationArea/Schedules/Edit/5
         public ActionResult Edit(int id)
         {
-
-            return View();
+            var schedule = db.Schedules.Find(id);
+            ScheduleModel model = new ScheduleModel();
+            model.Id = id;
+            model.BusName = schedule.Bus.BusName;
+            model.RouteName = schedule.Route.RouteName;
+            model.DepatureTime = schedule.DepartureTime;
+            model.DestinationTime = schedule.DestinationTime;
+            model.Price = 100000;
+            model.Status = schedule.Status;
+            return View(model);
         }
 
         // POST: BusStationArea/Schedules/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ScheduleModel scheduleModel)
         {
-            try
+            if (scheduleModel.DestinationTime > scheduleModel.DepatureTime && scheduleModel.DepatureTime > DateTime.Now)
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
+                    //Init db
+                    var bus = db.Buses.Where(b => b.BusName == scheduleModel.BusName && b.BusStation.BusStationID == userSession.AccountID).FirstOrDefault();
+                    var route = db.Routes.Where(r => r.RouteName == scheduleModel.RouteName).FirstOrDefault();
 
-                return RedirectToAction("Index");
+                    if (bus == null)
+                    {
+                        ModelState.AddModelError("", "Không có tên xe này!!");
+                        return View(scheduleModel);
+                    }
+                    else if (route == null)
+                    {
+                        ModelState.AddModelError("", "Không có tên tuyến đường này!!");
+                        return View(scheduleModel);
+                    }
+
+                    var scheduleEdit = db.Schedules.FirstOrDefault(sche => sche.ScheduleID == scheduleModel.Id);
+
+                    List<Seat> seats = db.Seats.Where(s => s.ScheduleID == scheduleEdit.ScheduleID).ToList();
+                    db.Seats.RemoveRange(seats);
+
+                    scheduleEdit.Bus = bus;
+                    scheduleEdit.Route = route;
+                    scheduleEdit.DepartureTime = scheduleModel.DepatureTime;
+                    scheduleEdit.DestinationTime = scheduleModel.DestinationTime;
+                    scheduleEdit.Status = scheduleModel.Status;
+
+                    db.Entry(scheduleEdit).State = EntityState.Modified;
+
+                    for (int i = 0; i < bus.NumberOfSeats; i++)
+                    {
+                        var seat = db.Seats.Create();
+                        seat.Schedule = scheduleEdit;
+                        seat.SeatNumber = i + 1;
+                        seat.Status = false;
+                        seat.Price = scheduleModel.Price;
+                        seat.Bill = null;
+                        db.Seats.Add(seat);
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+            else
             {
-                return View();
+                ModelState.AddModelError("", "Thời gian cho lịch trình không phù hợp!!");
             }
+            return View(scheduleModel);
         }
 
         // GET: BusStationArea/Schedules/Delete/5
