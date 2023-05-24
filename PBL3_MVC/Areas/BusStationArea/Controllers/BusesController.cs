@@ -80,14 +80,28 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
         {
-            if (ModelState.IsValid)
+            if (bus.NumberOfSeats <= 0)
             {
-                var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
-                bus.BusStationID = userSession.AccountID;
-                db.Entry(bus).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("", "Số lượng ghế không thể nhỏ hơn 0!!");
+                return View(bus);
             }
+            var checkName = db.Buses.FirstOrDefault(b => b.BusName == bus.BusName && b.BusID != bus.BusID);
+            if (checkName == null)
+            {
+                if (ModelState.IsValid)
+                {
+                    var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
+                    bus.BusStationID = userSession.AccountID;
+                    db.Entry(bus).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tên xe đã tồn tại!!");
+            }
+
             return View(bus);
         }
 
