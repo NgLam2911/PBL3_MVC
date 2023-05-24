@@ -70,12 +70,21 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
         {
-            if (ModelState.IsValid)
+            var checkName = db.Routes.FirstOrDefault(b => b.RouteName == route.RouteName && b.RouteID != route.RouteID);
+            if (checkName == null)
             {
-                db.Entry(route).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(route).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            else
+            {
+                ModelState.AddModelError("", "Tên tuyến đường đã tồn tại!!");
+            }
+
             return View(route);
         }
 
