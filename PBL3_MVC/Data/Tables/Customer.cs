@@ -15,9 +15,6 @@ namespace PBL3_MVC.Data.Tables
         [Key]
         public int CustomerID { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)] //Dont know who tf need this...
-        public int AccountID { get; set; }
-
         [Required]
         [StringLength(50)]
         public string Name { get; set; }

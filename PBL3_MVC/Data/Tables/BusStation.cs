@@ -15,9 +15,6 @@ namespace PBL3_MVC.Data.Tables
         [Key]
         public int BusStationID { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int AccountID { get; set; }
-
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
