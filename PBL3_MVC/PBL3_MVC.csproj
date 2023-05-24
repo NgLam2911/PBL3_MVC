@@ -236,9 +236,9 @@
     <Content Include="Areas\Admin\Views\Schedules\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Schedules\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Schedules\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStations\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BusStations\Create.cshtml" />
     <Content Include="Areas\Admin\Views\BusStations\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\BusStations\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

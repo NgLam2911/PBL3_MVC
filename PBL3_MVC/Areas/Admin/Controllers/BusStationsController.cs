@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using PBL3_MVC.Data;
 using PBL3_MVC.Data.Tables;
+using PBL3_MVC.Models;
+using PBL3_MVC.Utils;
 
 namespace PBL3_MVC.Areas.Admin.Controllers
 {
@@ -18,14 +20,13 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/BusStations
         public ActionResult Index()
         {
-            var busStations = db.BusStations.Include(b => b.Account);
-            return View(busStations.ToList());
+            List<BusStationModel> busStations = db.BusStations.Select(b => new BusStationModel { Id = b.Account.AccountID, Password = b.Account.Password, UserName = b.Name }).ToList();
+            return View(busStations);
         }
 
         // GET: Admin/BusStations/Create
         public ActionResult Create()
         {
-            ViewBag.BusStationID = new SelectList(db.Accounts, "AccountID", "UserName");
             return View();
         }
 
@@ -34,33 +35,44 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BusStationID,Name")] BusStation busStation)
+        public ActionResult Create(BusStationModel model)
         {
             if (ModelState.IsValid)
             {
-                db.BusStations.Add(busStation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                var check = db.Accounts.FirstOrDefault(s => s.UserName == model.UserName);
+                if (check == null)
+                {
+                    model.Password = md5helper.string2md5(model.Password);
 
-            ViewBag.BusStationID = new SelectList(db.Accounts, "AccountID", "UserName", busStation.BusStationID);
-            return View(busStation);
+                    var newAccount = db.Accounts.Create();
+                    newAccount.UserName = model.UserName;
+                    newAccount.Password = model.Password;
+                    newAccount.RoleID = 2;
+                    db.Accounts.Add(newAccount);
+                    db.SaveChanges();
+
+                    var newBusStation = db.BusStations.Create();
+                    newBusStation.Account = db.Accounts.FirstOrDefault(s => s.UserName == model.UserName);
+                    newBusStation.Name = model.UserName;
+                    db.BusStations.Add(newBusStation);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "BusStations");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên bến xe đã tồn tại!!");
+                }
+            }
+            return View();
         }
 
         // GET: Admin/BusStations/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BusStation busStation = db.BusStations.Find(id);
-            if (busStation == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.BusStationID = new SelectList(db.Accounts, "AccountID", "UserName", busStation.BusStationID);
-            return View(busStation);
+            var busStation = db.BusStations.Find(id);
+            BusStationModel model = new BusStationModel { Id = id, UserName = busStation.Name};
+            return View(model);
         }
 
         // POST: Admin/BusStations/Edit/5
@@ -68,42 +80,45 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BusStationID,Name")] BusStation busStation)
+        public ActionResult Edit(BusStationModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(busStation).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var check = db.Accounts.FirstOrDefault(s => s.UserName == model.UserName && s.AccountID != model.Id);
+                if (check == null)
+                {
+                    model.Password = md5helper.string2md5(model.Password);
+
+                    var accountEdit = db.Accounts.FirstOrDefault(s => s.AccountID == model.Id);
+                    accountEdit.UserName = model.UserName;
+                    accountEdit.Password = model.Password;
+                    db.SaveChanges();
+
+                    var busStationEdit = db.BusStations.FirstOrDefault(s => s.BusStationID == model.Id);
+                    busStationEdit.Name = model.UserName;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "BusStations");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên bến xe đã tồn tại!!");
+                }
             }
-            ViewBag.BusStationID = new SelectList(db.Accounts, "AccountID", "UserName", busStation.BusStationID);
-            return View(busStation);
+            return View();
         }
 
         // GET: Admin/BusStations/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BusStation busStation = db.BusStations.Find(id);
-            if (busStation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(busStation);
-        }
+            var model = db.BusStations.Find(id);
+            db.BusStations.Remove(model);
 
-        // POST: Admin/BusStations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BusStation busStation = db.BusStations.Find(id);
-            db.BusStations.Remove(busStation);
+            var account = db.Accounts.Find(id);
+            db.Accounts.Remove(account);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Index", "BusStations");
         }
 
         protected override void Dispose(bool disposing)

@@ -22,21 +22,6 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             return View(buses.ToList());
         }
 
-        // GET: Admin/Buses/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bus bus = db.Buses.Find(id);
-            if (bus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bus);
-        }
-
         // GET: Admin/Buses/Create
         public ActionResult Create()
         {
@@ -51,11 +36,24 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
         {
-            if (ModelState.IsValid)
+            if (bus.NumberOfSeats <= 0)
             {
-                db.Buses.Add(bus);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("", "Số lượng ghế không thể nhỏ hơn 0!!");
+                return View(bus);
+            }
+            var checkName = db.Buses.FirstOrDefault(b => b.BusName == bus.BusName);
+            if (checkName == null)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Buses.Add(bus);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tên xe đã tồn tại!!");
             }
 
             ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name", bus.BusStationID);
@@ -85,35 +83,32 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
         {
-            if (ModelState.IsValid)
+            if (bus.NumberOfSeats <= 0)
             {
-                db.Entry(bus).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("", "Số lượng ghế không thể nhỏ hơn 0!!");
+                return View(bus);
             }
+            var checkName = db.Buses.FirstOrDefault(b => b.BusName == bus.BusName && b.BusID != bus.BusID);
+            if (checkName == null)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(bus).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tên xe đã tồn tại!!");
+            }
+
             ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name", bus.BusStationID);
             return View(bus);
         }
 
         // GET: Admin/Buses/Delete/5
         public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bus bus = db.Buses.Find(id);
-            if (bus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bus);
-        }
-
-        // POST: Admin/Buses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
         {
             Bus bus = db.Buses.Find(id);
             db.Buses.Remove(bus);
