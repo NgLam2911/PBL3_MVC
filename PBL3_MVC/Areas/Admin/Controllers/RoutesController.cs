@@ -21,21 +21,6 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             return View(db.Routes.ToList());
         }
 
-        // GET: Admin/Routes/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Route route = db.Routes.Find(id);
-            if (route == null)
-            {
-                return HttpNotFound();
-            }
-            return View(route);
-        }
-
         // GET: Admin/Routes/Create
         public ActionResult Create()
         {
@@ -49,18 +34,26 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
         {
-            if (ModelState.IsValid)
+            var checkName = db.Routes.FirstOrDefault(b => b.RouteName == route.RouteName);
+            if (checkName == null)
             {
-                db.Routes.Add(route);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Routes.Add(route);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tên tuyến đường đã tồn tại!!");
             }
 
             return View(route);
         }
 
         // GET: Admin/Routes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -81,34 +74,26 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
         {
-            if (ModelState.IsValid)
+            var checkName = db.Routes.FirstOrDefault(b => b.RouteName == route.RouteName && b.RouteID != route.RouteID);
+            if (checkName == null)
             {
-                db.Entry(route).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(route).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            else
+            {
+                ModelState.AddModelError("", "Tên tuyến đường đã tồn tại!!");
+            }
+
             return View(route);
         }
 
         // GET: Admin/Routes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Route route = db.Routes.Find(id);
-            if (route == null)
-            {
-                return HttpNotFound();
-            }
-            return View(route);
-        }
-
-        // POST: Admin/Routes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             Route route = db.Routes.Find(id);
             db.Routes.Remove(route);

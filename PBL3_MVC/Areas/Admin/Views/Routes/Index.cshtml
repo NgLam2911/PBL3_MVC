@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<PBL3_MVC.Data.Tables.Route>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách tuyến";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Danh sách tuyến</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo tuyến mới", "Create", "Routes", new { area = "Admin" }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -37,8 +37,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.RouteID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RouteID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RouteID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.RouteID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
         </td>
     </tr>
 }
