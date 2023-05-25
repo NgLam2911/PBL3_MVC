@@ -141,6 +141,7 @@
     <Compile Include="Areas\BusStationArea\Controllers\HomeController.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\RoutesController.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\SchedulesController.cs" />
+    <Compile Include="Areas\Customer\Controllers\BookingController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -167,6 +168,8 @@
       <DependentUpon>202305241339414_v2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BillModel.cs" />
+    <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\BusStationModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
@@ -239,6 +242,10 @@
     <Content Include="Areas\Admin\Views\Schedules\EditSeat.cshtml" />
     <Content Include="Areas\Admin\Views\Schedules\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Schedules\Edit.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\ListSchedule.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\ListSeat.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
