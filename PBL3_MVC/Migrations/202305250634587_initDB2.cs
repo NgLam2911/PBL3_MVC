@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initdb : DbMigration
+    public partial class initDB2 : DbMigration
     {
         public override void Up()
         {
@@ -109,7 +109,6 @@
                 c => new
                     {
                         CustomerID = c.Int(nullable: false),
-                        AccountID = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
                         Email = c.String(nullable: false, maxLength: 50),
                     })

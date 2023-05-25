@@ -1,6 +1,4 @@
-﻿using PBL3_MVC.Data.Tables;
-
-namespace PBL3_MVC.Migrations
+﻿namespace PBL3_MVC.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -16,11 +14,10 @@ namespace PBL3_MVC.Migrations
 
         protected override void Seed(PBL3_MVC.Data.Db context)
         {
-            context.Roles.AddRange(new Role[]
-            {
-                new Role() {RoleID = 1, RoleName = "Admin"},
-                new Role() {RoleID = 2, RoleName = "BusStation"},
-            });
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //  to avoid creating duplicate seed data.
         }
     }
 }

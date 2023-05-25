@@ -154,9 +154,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305120306101_initdb.cs" />
-    <Compile Include="Migrations\202305120306101_initdb.designer.cs">
-      <DependentUpon>202305120306101_initdb.cs</DependentUpon>
+    <Compile Include="Migrations\202305250634587_initDB2.cs" />
+    <Compile Include="Migrations\202305250634587_initDB2.designer.cs">
+      <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -281,8 +281,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305120306101_initdb.resx">
-      <DependentUpon>202305120306101_initdb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305250634587_initDB2.resx">
+      <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

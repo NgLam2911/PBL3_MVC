@@ -7,13 +7,13 @@ namespace PBL3_MVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class initdb : IMigrationMetadata
+    public sealed partial class initDB2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initdb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initDB2));
         
         string IMigrationMetadata.Id
         {
-            get { return "202305120306101_initdb"; }
+            get { return "202305250634587_initDB2"; }
         }
         
         string IMigrationMetadata.Source
