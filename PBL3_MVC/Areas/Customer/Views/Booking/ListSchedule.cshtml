@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PBL3_MVC.Models.ScheduleModel>
+
+@{
+    ViewBag.Title = "Danh sách chuyến đi";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Danh sách chuyến đi phù hợp</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RouteName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepatureTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestinationTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfSeat)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RouteName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepatureTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinationTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfSeat)
+        </td>
+        <td>
+            @Html.ActionLink("Chọn tuyến", "ListSeat", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
