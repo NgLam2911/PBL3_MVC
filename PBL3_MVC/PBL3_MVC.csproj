@@ -130,7 +130,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusStationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoutesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\BusStationArea\BusStationAreaRegistration.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\BusesController.cs" />
@@ -158,7 +162,12 @@
     <Compile Include="Migrations\202305250634587_initDB2.designer.cs">
       <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305241339414_v2.cs" />
+    <Compile Include="Migrations\202305241339414_v2.designer.cs">
+      <DependentUpon>202305241339414_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BusStationModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
@@ -216,6 +225,20 @@
     <Content Include="Areas\BusStationArea\Views\Schedules\EditSeat.cshtml" />
     <Content Include="Areas\BusStationArea\Views\Schedules\Create.cshtml" />
     <Content Include="Areas\BusStationArea\Views\Schedules\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Buses\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Buses\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Buses\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStations\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStations\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\EditSeat.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -283,6 +306,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202305250634587_initDB2.resx">
       <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305241339414_v2.resx">
+      <DependentUpon>202305241339414_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

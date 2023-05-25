@@ -9,25 +9,27 @@ using System.Web.Mvc;
 using PBL3_MVC.Data;
 using PBL3_MVC.Data.Tables;
 
-namespace PBL3_MVC.Areas.BusStationArea.Controllers
+namespace PBL3_MVC.Areas.Admin.Controllers
 {
     public class RoutesController : Controller
     {
         private Db db = new Db();
 
-        // GET: BusStationArea/Routes
+        // GET: Admin/Routes
         public ActionResult Index()
         {
             return View(db.Routes.ToList());
         }
 
-        // GET: BusStationArea/Routes/Create
+        // GET: Admin/Routes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BusStationArea/Routes/Create
+        // POST: Admin/Routes/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
@@ -50,8 +52,8 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
             return View(route);
         }
 
-        // GET: BusStationArea/Routes/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Admin/Routes/Edit/5
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -65,7 +67,9 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
             return View(route);
         }
 
-        // POST: BusStationArea/Routes/Edit/5
+        // POST: Admin/Routes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
@@ -88,6 +92,7 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
             return View(route);
         }
 
+        // GET: Admin/Routes/Delete/5
         public ActionResult Delete(int id)
         {
             Route route = db.Routes.Find(id);

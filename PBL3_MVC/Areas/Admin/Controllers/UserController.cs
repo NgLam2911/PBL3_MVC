@@ -100,8 +100,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             }
             return View();
         }
-        // POST: Admin/User/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             var customer = db.Customers.Find(id);
             db.Customers.Remove(customer);
