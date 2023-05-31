@@ -7,6 +7,7 @@ namespace PBL3_MVC.Models
 {
     public class BillModel
     {
+        public int Id { get; set; }
         public int SeatID { get; set; }
         public string CustomerName { get; set; }
         public string BusStationName { get; set; }

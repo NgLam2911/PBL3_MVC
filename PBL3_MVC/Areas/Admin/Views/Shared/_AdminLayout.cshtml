@@ -22,6 +22,7 @@
                     <li>@Html.ActionLink("QL Xe", "Index", "Buses", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("QL Tuyến", "Index", "Routes", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("QL Lịch trình", "Index", "Schedules", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("QL Vé", "Index", "Bills", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;} 
                     <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Đăng xuất", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>

@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BillsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusStationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -137,10 +138,12 @@
     <Compile Include="Areas\Admin\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\BusStationArea\BusStationAreaRegistration.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\BillsController.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\BusesController.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\HomeController.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\RoutesController.cs" />
     <Compile Include="Areas\BusStationArea\Controllers\SchedulesController.cs" />
+    <Compile Include="Areas\Customer\Controllers\BillsController.cs" />
     <Compile Include="Areas\Customer\Controllers\BookingController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
@@ -246,6 +249,9 @@
     <Content Include="Areas\Customer\Views\Booking\ListSchedule.cshtml" />
     <Content Include="Areas\Customer\Views\Booking\ListSeat.cshtml" />
     <Content Include="Areas\Customer\Views\Booking\Details.cshtml" />
+    <Content Include="Areas\Customer\Views\Bills\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Bills\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Bills\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<PBL3_MVC.Models.BillModel>
+
+@{
+    ViewBag.Title = "Quản lý Vé";
+    Layout = "~/Areas/BusStationArea/Views/Shared/_BusStationLayout.cshtml";
+}
+
+<h2>Quản lý Vé</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusStationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartureTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestinationTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeatID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusStationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartureTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinationTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id, seatid = item.SeatID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+        </td>
+    </tr>
+}
+
+</table>
