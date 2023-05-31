@@ -6,10 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Security.AccessControl;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace PBL3_MVC.Areas.BusStationArea.Controllers
 {
@@ -58,7 +55,7 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
             {
                 db.Entry(seat).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", new {id = seat.ScheduleID});
+                return RedirectToAction("Details", new { id = seat.ScheduleID });
             }
             return View(seat);
         }
