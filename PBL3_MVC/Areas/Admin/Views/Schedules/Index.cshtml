@@ -13,28 +13,28 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BusName)
+            Tên xe
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RouteName)
+            Tên tuyến
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Departure)
+            Điểm đi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Destination)
+            Điểm đến
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepatureTime)
+            Thời gian đi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DestinationTime)
+            Thời gian đến
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumberOfSeat)
+            Số lượng ghế
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Điều chỉnh
         </th>
         <th></th>
     </tr>
@@ -69,16 +69,16 @@
             @{
                 if (item.Status == false)
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id })
                 }
             }
             |
-            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.Id })
             |
             @{
                 if (item.Status == false)
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
                 }
             }
         </td>
