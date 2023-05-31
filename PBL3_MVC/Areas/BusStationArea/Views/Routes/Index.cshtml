@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RouteName)
+            Tên tuyến
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Departure)
+            Điểm khởi hành
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Destination)
+            Điểm kết thúc
         </th>
         <th></th>
     </tr>
@@ -36,8 +36,8 @@
             @Html.DisplayFor(modelItem => item.Destination)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RouteID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RouteID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.RouteID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.RouteID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
         </td>
     </tr>
 }

@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BusStation.Name)
+            Bến xe
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BusName)
+            Tên xe
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumberOfSeats)
+            Số lượng ghế
         </th>
         <th></th>
     </tr>
@@ -36,8 +36,8 @@
             @Html.DisplayFor(modelItem => item.NumberOfSeats)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.BusID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
         </td>
     </tr>
 }

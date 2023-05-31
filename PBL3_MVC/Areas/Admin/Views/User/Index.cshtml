@@ -13,16 +13,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            ID Người dùng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            Tên người dùng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            Mật khẩu đã được mã hóa
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th></th>
     </tr>
@@ -42,8 +42,8 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new {onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');"})
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new {onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');"})
         </td>
     </tr>
 }
