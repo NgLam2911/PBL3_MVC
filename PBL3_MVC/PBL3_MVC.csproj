@@ -130,11 +130,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BillsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusStationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoutesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SchedulesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
-    <Compile Include="Areas\BusStation\BusStationAreaRegistration.cs" />
-    <Compile Include="Areas\BusStation\Controllers\BusesController.cs" />
-    <Compile Include="Areas\BusStation\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BusStationArea\BusStationAreaRegistration.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\BillsController.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\BusesController.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\RoutesController.cs" />
+    <Compile Include="Areas\BusStationArea\Controllers\SchedulesController.cs" />
+    <Compile Include="Areas\Customer\Controllers\BillsController.cs" />
+    <Compile Include="Areas\Customer\Controllers\BookingController.cs" />
     <Compile Include="Areas\Customer\Controllers\HomeController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -152,13 +162,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305120306101_initdb.cs" />
-    <Compile Include="Migrations\202305120306101_initdb.designer.cs">
-      <DependentUpon>202305120306101_initdb.cs</DependentUpon>
+    <Compile Include="Migrations\202305250634587_initDB2.cs" />
+    <Compile Include="Migrations\202305250634587_initDB2.designer.cs">
+      <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305241339414_v2.cs" />
+    <Compile Include="Migrations\202305241339414_v2.designer.cs">
+      <DependentUpon>202305241339414_v2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BillModel.cs" />
+    <Compile Include="Models\BookingModel.cs" />
+    <Compile Include="Models\BusStationModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\md5helper.cs" />
@@ -180,6 +198,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -195,21 +214,51 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
-    <Content Include="Areas\BusStation\Views\web.config" />
+    <Content Include="Areas\BusStationArea\Views\web.config" />
     <Content Include="Areas\Customer\Views\web.config" />
-    <Content Include="Areas\BusStation\Views\Shared\_BusStationLayout.cshtml" />
-    <Content Include="Areas\BusStation\Views\Home\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Shared\_BusStationLayout.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Home\Index.cshtml" />
     <Content Include="Areas\Customer\Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Areas\Customer\Views\Home\Index.cshtml" />
-    <Content Include="Areas\BusStation\Views\Buses\Create.cshtml" />
-    <Content Include="Areas\BusStation\Views\Buses\Edit.cshtml" />
-    <Content Include="Areas\BusStation\Views\Buses\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Buses\Create.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Buses\Edit.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Buses\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Routes\Create.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Routes\Edit.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Routes\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Schedules\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Schedules\Details.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Schedules\EditSeat.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Schedules\Create.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Schedules\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Buses\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Buses\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Buses\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStations\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStations\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\EditSeat.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedules\Edit.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\Index.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\ListSchedule.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\ListSeat.cshtml" />
+    <Content Include="Areas\Customer\Views\Booking\Details.cshtml" />
+    <Content Include="Areas\Customer\Views\Bills\Index.cshtml" />
+    <Content Include="Areas\BusStationArea\Views\Bills\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Bills\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -234,9 +283,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\BusStation\Data\" />
+    <Folder Include="Areas\BusStationArea\Data\" />
     <Folder Include="Areas\Customer\Data\" />
-    <Folder Include="Views\BusStation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -269,8 +317,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305120306101_initdb.resx">
-      <DependentUpon>202305120306101_initdb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305250634587_initDB2.resx">
+      <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305241339414_v2.resx">
+      <DependentUpon>202305241339414_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

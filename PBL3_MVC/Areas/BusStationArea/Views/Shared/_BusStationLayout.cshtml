@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Hệ thống đặt vé xe trực tuyến</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Đặt vé xe trực tuyến", "Index", "Home", new { area = "BusStationArea" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Quản lý Xe", "Index", "Buses", new { area = "BusStationArea" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Quản lý Tuyến đường", "Index", "Routes", new { area = "BusStationArea" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Quản lý Lịch trình", "Index", "Schedules", new { area = "BusStationArea" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Quản lý Vé", "Index", "Bills", new { area = "BusStationArea" }, new { @class = "nav-link" })</li>
+                    @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;}
+                    <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "BusStationArea" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Đăng xuất", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Hệ thống đặt vé xe trực tuyến</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

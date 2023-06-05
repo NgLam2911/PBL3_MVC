@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Hệ thống đặt vé xe trực tuyến</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,8 +17,8 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Đặt vé", "Index", "Home", new { area = "Customer" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Vé đã đặt", "Index", "Home", new { area = "Customer" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Đặt vé", "Index", "Booking", new { area = "Customer" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Vé đã đặt", "Index", "Bills", new { area = "Customer" }, new { @class = "nav-link" })</li>
                     @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;}
                     <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Customer" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Đăng xuất", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
@@ -30,7 +30,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Hệ thống đặt vé xe trực tuyến</p>
         </footer>
     </div>
 

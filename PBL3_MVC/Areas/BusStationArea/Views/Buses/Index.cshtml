@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PBL3_MVC.Data.Tables.Bus>
+
+@{
+    ViewBag.Title = "Quản lý Xe";
+    Layout = "~/Areas/BusStationArea/Views/Shared/_BusStationLayout.cshtml";
+}
+
+<h2>Quản lý Xe</h2>
+
+<p>
+    @Html.ActionLink("Thêm xe mới", "Create", "Buses", new { area = "BusStationArea" }, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Bến xe
+        </th>
+        <th>
+            Tên xe
+        </th>
+        <th>
+            Số lượng ghế
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusStation.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfSeats)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.BusID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+        </td>
+    </tr>
+}
+
+</table>

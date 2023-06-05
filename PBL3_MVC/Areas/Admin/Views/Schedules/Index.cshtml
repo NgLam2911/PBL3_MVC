@@ -1,0 +1,88 @@
+﻿@model IEnumerable<PBL3_MVC.Models.ScheduleModel>
+
+@{
+    ViewBag.Title = "Quản lý lịch trình";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản lý lịch trình</h2>
+
+<p>
+    @Html.ActionLink("Tạo lịch trình mới", "Create", "Schedules", new { area = "Admin" }, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên xe
+        </th>
+        <th>
+            Tên tuyến
+        </th>
+        <th>
+            Điểm đi
+        </th>
+        <th>
+            Điểm đến
+        </th>
+        <th>
+            Thời gian đi
+        </th>
+        <th>
+            Thời gian đến
+        </th>
+        <th>
+            Số lượng ghế
+        </th>
+        <th>
+            Điều chỉnh
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RouteName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepatureTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinationTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfSeat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @{
+                if (item.Status == false)
+                {
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id })
+                }
+            }
+            |
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.Id })
+            |
+            @{
+                if (item.Status == false)
+                {
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

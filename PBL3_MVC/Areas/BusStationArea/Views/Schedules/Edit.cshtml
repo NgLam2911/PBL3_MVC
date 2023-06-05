@@ -1,0 +1,92 @@
+﻿@model PBL3_MVC.Models.ScheduleModel
+
+@{
+    ViewBag.Title = "Chỉnh sửa tuyến đường";
+    Layout = "~/Areas/BusStationArea/Views/Shared/_BusStationLayout.cshtml";
+}
+
+<h2>Chỉnh sửa tuyến đường</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BusName, "Tên xe", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BusName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BusName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RouteName, "Tên tuyến", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RouteName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RouteName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepatureTime, "Thời gian khởi hành", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DepatureTime, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
+            @Html.ValidationMessageFor(model => model.DepatureTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DestinationTime, "Thời gian đến", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DestinationTime, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
+            @Html.ValidationMessageFor(model => model.DestinationTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, "Giá", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, "Public?", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-success btn-default" style="margin:15px" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Trở lại danh sách Lịch trình", "Index")
+</div>
+
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script>
+        $(function () {
+            $(".datetimepicker").datetimepicker(
+                {
+                    format: 'Y/m/d h:i'
+                });
+        });
+    </script>
+}

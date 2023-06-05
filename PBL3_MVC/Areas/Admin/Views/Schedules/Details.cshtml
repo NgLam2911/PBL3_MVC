@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PBL3_MVC.Data.Tables.Seat>
+
+@{
+    ViewBag.Title = "Danh sách ghế";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Danh sách ghế</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Ghế số
+        </th>
+        <th>
+            Giá tiền
+        </th>
+        <th>
+            Được đặt
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @{
+                if (item.Status == false)
+                {
+                    @Html.ActionLink("Chỉnh sửa", "EditSeat", new { id = item.SeatID })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Trở lại danh sách Lịch trình", "Index")
+</div>

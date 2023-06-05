@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Hệ thống đặt vé xe trực tuyến</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -18,9 +18,11 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("QL Người dùng", "Index", "User", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("QL Bến xe", "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("QL Xe", "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("QL Tuyến", "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("QL Bến xe", "Index", "BusStations", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("QL Xe", "Index", "Buses", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("QL Tuyến", "Index", "Routes", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("QL Lịch trình", "Index", "Schedules", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("QL Vé", "Index", "Bills", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;} 
                     <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Đăng xuất", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
@@ -32,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Hệ thống đặt vé xe trực tuyến</p>
         </footer>
     </div>
 

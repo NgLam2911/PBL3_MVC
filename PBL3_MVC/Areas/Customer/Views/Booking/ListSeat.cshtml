@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PBL3_MVC.Data.Tables.Seat>
+
+@{
+    ViewBag.Title = "Danh sách Ghế";
+    Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Danh sách Ghế</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Ghế số
+        </th>
+        <th>
+            Giá vé
+        </th>
+        <th>
+            Đã đặt
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @{
+                if (item.Status == false)
+                {
+                    @Html.ActionLink("Chọn ghế", "Details", new { id = item.SeatID })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @*@Html.ActionLink("Trở lại danh sách Lịch trình", "ListSchedule")*@
+</div>
