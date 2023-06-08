@@ -64,6 +64,16 @@ namespace PBL3_MVC.Data
                 .HasMany(e => e.Seats)
                 .WithRequired(e => e.Schedule)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Location>()
+                .HasMany(e => e.Routes)
+                .WithRequired(e => e.Departure)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Location>()
+                .HasMany(e => e.Routes)
+                .WithRequired(e => e.Destination)
+                .WillCascadeOnDelete(false);
         }
     }
 }
