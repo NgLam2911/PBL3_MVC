@@ -39,7 +39,7 @@ namespace PBL3_MVC.Areas.Customer.Controllers
         }
         public ActionResult ListSchedule(BookingModel model)
         {
-            List<ScheduleModel> schedules = db.Schedules.Where(s => s.Route.Departure == model.Departure && s.Route.Destination == model.Destination && s.DepartureTime >= model.DepartureTime && s.Status == true).Select(s => new ScheduleModel { Id = s.ScheduleID, BusName = s.Bus.BusName, RouteName = s.Route.RouteName, Departure = s.Route.Departure, Destination = s.Route.Destination, DepatureTime = s.DepartureTime, DestinationTime = s.DestinationTime, NumberOfSeat = s.Bus.NumberOfSeats, Status = s.Status }).ToList();
+            List<ScheduleModel> schedules = db.Schedules.Where(s => s.Route.Departure.LocationName == model.Departure && s.Route.Destination.LocationName == model.Destination && s.DepartureTime >= model.DepartureTime && s.Status == true).Select(s => new ScheduleModel { Id = s.ScheduleID, BusName = s.Bus.BusName, RouteName = s.Route.RouteName, Departure = s.Route.Departure.LocationName, Destination = s.Route.Destination.LocationName, DepatureTime = s.DepartureTime, DestinationTime = s.DestinationTime, NumberOfSeat = s.Bus.NumberOfSeats, Status = s.Status }).ToList();
             for (int i = 0; i < schedules.Count; i++)
             {
                 var scheduleId = schedules[i].Id;
@@ -65,8 +65,8 @@ namespace PBL3_MVC.Areas.Customer.Controllers
             model.BusStationName = seat.Schedule.Bus.BusStation.Name;
             model.BusName = seat.Schedule.Bus.BusName;
             model.SeatNumber = seat.SeatNumber;
-            model.Departure = seat.Schedule.Route.Departure;
-            model.Destination = seat.Schedule.Route.Destination;
+            model.Departure = seat.Schedule.Route.Departure.LocationName;
+            model.Destination = seat.Schedule.Route.Destination.LocationName;
             model.DepartureTime = seat.Schedule.DepartureTime;
             model.DestinationTime = seat.Schedule.DestinationTime;
             model.Price = seat.Price;

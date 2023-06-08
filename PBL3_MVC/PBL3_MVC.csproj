@@ -155,6 +155,7 @@
     <Compile Include="Data\Tables\Bus.cs" />
     <Compile Include="Data\Tables\BusStation.cs" />
     <Compile Include="Data\Tables\Customer.cs" />
+    <Compile Include="Data\Tables\Location.cs" />
     <Compile Include="Data\Tables\Role.cs" />
     <Compile Include="Data\Tables\Route.cs" />
     <Compile Include="Data\Tables\Schedule.cs" />
@@ -162,15 +163,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305250634587_initDB2.cs" />
-    <Compile Include="Migrations\202305250634587_initDB2.designer.cs">
-      <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305241339414_v2.cs" />
-    <Compile Include="Migrations\202305241339414_v2.designer.cs">
-      <DependentUpon>202305241339414_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillModel.cs" />
     <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\BusStationModel.cs" />
@@ -315,14 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305250634587_initDB2.resx">
-      <DependentUpon>202305250634587_initDB2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305241339414_v2.resx">
-      <DependentUpon>202305241339414_v2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

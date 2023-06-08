@@ -19,12 +19,14 @@ namespace PBL3_MVC.Data.Tables
         public string RouteName { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Departure { get; set; }
+        public int DepartureID { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Destination { get; set; }
+        public int DestinationID { get; set; }
+
+        public virtual Location Departure { get; set; }
+
+        public virtual Location Destination { get; set; }
 
         public virtual ICollection<Schedule> Schedules { get; set; }
     }

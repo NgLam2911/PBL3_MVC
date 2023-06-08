@@ -19,7 +19,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/Schedules
         public ActionResult Index()
         {
-            List<ScheduleModel> schedules = db.Schedules.Select(s => new ScheduleModel { Id = s.ScheduleID, BusName = s.Bus.BusName, RouteName = s.Route.RouteName, Departure = s.Route.Departure, Destination = s.Route.Destination, DepatureTime = s.DepartureTime, DestinationTime = s.DestinationTime, NumberOfSeat = s.Bus.NumberOfSeats, Status = s.Status }).ToList();
+            List<ScheduleModel> schedules = db.Schedules.Select(s => new ScheduleModel { Id = s.ScheduleID, BusName = s.Bus.BusName, RouteName = s.Route.RouteName, Departure = s.Route.Departure.LocationName, Destination = s.Route.Destination.LocationName, DepatureTime = s.DepartureTime, DestinationTime = s.DestinationTime, NumberOfSeat = s.Bus.NumberOfSeats, Status = s.Status }).ToList();
             for (int i = 0; i < schedules.Count; i++)
             {
                 var scheduleId = schedules[i].Id;
