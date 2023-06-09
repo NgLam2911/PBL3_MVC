@@ -163,9 +163,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306090155227_v1.cs" />
-    <Compile Include="Migrations\202306090155227_v1.designer.cs">
-      <DependentUpon>202306090155227_v1.cs</DependentUpon>
+    <Compile Include="Migrations\202306090454429_Dbv2.cs" />
+    <Compile Include="Migrations\202306090454429_Dbv2.designer.cs">
+      <DependentUpon>202306090454429_Dbv2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillModel.cs" />
@@ -314,8 +314,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306090155227_v1.resx">
-      <DependentUpon>202306090155227_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306090454429_Dbv2.resx">
+      <DependentUpon>202306090454429_Dbv2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,7 +9,8 @@ namespace PBL3_MVC.Data.Tables
     {
         public Location()
         {
-            Routes = new HashSet<Route>();
+            DeparturesRoute = new HashSet<Route>();
+            DestinationsRoute = new HashSet<Route>();
         }
         [Key]
         [Required]
@@ -19,6 +20,8 @@ namespace PBL3_MVC.Data.Tables
         [StringLength(128)]
         public string LocationName { get; set; }
 
-        public virtual ICollection<Route> Routes { get; set; }
+        public virtual ICollection<Route> DeparturesRoute { get; set; }
+
+        public virtual ICollection<Route> DestinationsRoute { get; set; }
     }
 }

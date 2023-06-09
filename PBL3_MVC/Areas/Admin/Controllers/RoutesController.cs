@@ -24,6 +24,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/Routes/Create
         public ActionResult Create()
         {
+            ViewBag.Departures = new SelectList(db.Locations, "LocationID", "LocationName");
+            ViewBag.Destinations = new SelectList(db.Locations, "LocationID", "LocationName");
             return View();
         }
 
@@ -32,7 +34,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
+        public ActionResult Create([Bind(Include = "RouteID,RouteName,DepartureID,DestinationID")] Route route)
         {
             var checkName = db.Routes.FirstOrDefault(b => b.RouteName == route.RouteName);
             if (checkName == null)
@@ -72,7 +74,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RouteID,RouteName,Departure,Destination")] Route route)
+        public ActionResult Edit([Bind(Include = "RouteID,RouteName,DepartureID,DestinationID")] Route route)
         {
             var checkName = db.Routes.FirstOrDefault(b => b.RouteName == route.RouteName && b.RouteID != route.RouteID);
             if (checkName == null)

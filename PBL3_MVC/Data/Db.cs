@@ -21,6 +21,7 @@ namespace PBL3_MVC.Data
         public DbSet<Route> Routes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Seat> Seats { get; set; }
+        public DbSet<Location> Locations { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -66,12 +67,12 @@ namespace PBL3_MVC.Data
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Location>()
-                .HasMany(e => e.Routes)
+                .HasMany(e => e.DeparturesRoute)
                 .WithRequired(e => e.Departure)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Location>()
-                .HasMany(e => e.Routes)
+                .HasMany(e => e.DestinationsRoute)
                 .WithRequired(e => e.Destination)
                 .WillCascadeOnDelete(false);
         }

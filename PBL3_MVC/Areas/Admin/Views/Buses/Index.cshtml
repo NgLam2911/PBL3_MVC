@@ -13,9 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            Bến xe
-        </th>
-        <th>
             Tên xe
         </th>
         <th>
@@ -23,6 +20,9 @@
         </th>
         <th>
             Người đăng ký
+        </th>
+        <th>
+            Tài xế
         </th>
         <th>
             Ngày cấp
@@ -39,17 +39,29 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BusStation.Name)
+            @Html.DisplayFor(modelItem => item.BusName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BusName)
+            @Html.DisplayFor(modelItem => item.BusNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisterPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LicenseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumberOfSeats)
         </td>
         <td>
-            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.BusID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.BusID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
         </td>
     </tr>
 }

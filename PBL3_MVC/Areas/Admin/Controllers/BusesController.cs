@@ -34,14 +34,14 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
+        public ActionResult Create([Bind(Include = "BusID,BusStationID,BusName,BusNumber,RegisterPerson,Driver,RegDate,LicenseDate,NumberOfSeats")] Bus bus)
         {
             if (bus.NumberOfSeats <= 0)
             {
                 ModelState.AddModelError("", "Số lượng ghế không thể nhỏ hơn 0!!");
                 return View(bus);
             }
-            var checkName = db.Buses.FirstOrDefault(b => b.BusName == bus.BusName);
+            var checkName = db.Buses.FirstOrDefault(b => b.BusNumber == bus.BusNumber);
             if (checkName == null)
             {
                 if (ModelState.IsValid)
@@ -53,7 +53,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Tên xe đã tồn tại!!");
+                ModelState.AddModelError("", "Biển số xe đã tồn tại!!");
             }
 
             ViewBag.BusStationID = new SelectList(db.BusStations, "BusStationID", "Name", bus.BusStationID);
@@ -81,7 +81,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
+        public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,BusNumber,RegisterPerson,Driver,RegDate,LicenseDate,NumberOfSeats")] Bus bus)
         {
             if (bus.NumberOfSeats <= 0)
             {
