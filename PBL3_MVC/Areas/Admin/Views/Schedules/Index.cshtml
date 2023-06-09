@@ -42,16 +42,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BusName)
+            @Html.DisplayFor(modelItem => item.Bus.BusName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RouteName)
+            @Html.DisplayFor(modelItem => item.Route.RouteName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Departure)
+            @Html.DisplayFor(modelItem => item.Route.Departure.LocationName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Destination)
+            @Html.DisplayFor(modelItem => item.Route.Destination.LocationName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DepatureTime)

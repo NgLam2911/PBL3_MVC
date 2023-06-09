@@ -30,10 +30,10 @@
             @Html.DisplayFor(modelItem => item.RouteName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Departure)
+            @Html.DisplayFor(modelItem => item.Departure.LocationName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Destination)
+            @Html.DisplayFor(modelItem => item.Destination.LocationName)
         </td>
         <td>
             @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.RouteID }) |

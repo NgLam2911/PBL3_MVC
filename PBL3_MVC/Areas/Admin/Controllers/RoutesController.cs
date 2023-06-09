@@ -24,8 +24,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/Routes/Create
         public ActionResult Create()
         {
-            ViewBag.Departures = new SelectList(db.Locations, "LocationID", "LocationName");
-            ViewBag.Destinations = new SelectList(db.Locations, "LocationID", "LocationName");
+            ViewBag.DepartureID = new SelectList(db.Locations, "LocationID", "LocationName");
+            ViewBag.DestinationID = new SelectList(db.Locations, "LocationID", "LocationName");
             return View();
         }
 
@@ -66,6 +66,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DepartureID = new SelectList(db.Locations, "LocationID", "LocationName", route.DepartureID);
+            ViewBag.DestinationID = new SelectList(db.Locations, "LocationID", "LocationName", route.DestinationID);
             return View(route);
         }
 

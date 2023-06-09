@@ -17,18 +17,18 @@
     @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.BusName, "Tên xe", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Bus, "Tên xe", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.BusName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BusName, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Bus, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Bus, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.RouteName, "Tên tuyến", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Route, "Tên tuyến", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.RouteName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.RouteName, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Route, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Route, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -85,7 +85,7 @@
         $(function () {
             $(".datetimepicker").datetimepicker(
                 {
-                    format: 'Y/m/d h:i'
+                    format: 'Y/m/d H:i'
                 });
         });
     </script>

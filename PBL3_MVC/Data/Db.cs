@@ -69,11 +69,13 @@ namespace PBL3_MVC.Data
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.DeparturesRoute)
                 .WithRequired(e => e.Departure)
+                .HasForeignKey(e => e.DepartureID)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Location>()
                 .HasMany(e => e.DestinationsRoute)
                 .WithRequired(e => e.Destination)
+                .HasForeignKey (e => e.DestinationID)
                 .WillCascadeOnDelete(false);
         }
     }

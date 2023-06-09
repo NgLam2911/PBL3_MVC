@@ -81,7 +81,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,BusNumber,RegisterPerson,Driver,RegDate,LicenseDate,NumberOfSeats")] Bus bus)
+        public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
         {
             if (bus.NumberOfSeats <= 0)
             {
