@@ -35,15 +35,15 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
             return View(bills);
         }
 
-        public ActionResult Delete(int id, int seatid)
-        {
-            Bill bill = db.Bills.Find(id);
-            Seat seat = db.Seats.Find(seatid);
-            seat.BillID = null;
-            seat.Status = false;
-            db.Bills.Remove(bill);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //public ActionResult Delete(int id, int seatid)
+        //{
+        //    Bill bill = db.Bills.Find(id);
+        //    Seat seat = db.Seats.Find(seatid);
+        //    seat.BillID = null;
+        //    seat.Status = false;
+        //    db.Bills.Remove(bill);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
     }
 }

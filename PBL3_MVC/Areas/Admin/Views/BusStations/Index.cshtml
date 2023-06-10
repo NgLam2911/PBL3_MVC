@@ -18,9 +18,6 @@
         <th>
             Tên Bến xe
         </th>
-        <th>
-            Mật khẩu đã được mã hóa
-        </th>
         <th></th>
     </tr>
 
@@ -31,9 +28,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
             @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }) |

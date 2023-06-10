@@ -34,18 +34,22 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BusID,BusStationID,BusName,BusNumber,RegisterPerson,Driver,RegDate,LicenseDate,NumberOfSeats")] Bus bus)
+        public ActionResult Create([Bind(Include = "BusID,BusStationID,BusName,BusNumber,RegisterPerson,Driver,LicenseDate,NumberOfSeats")] Bus bus)
         {
+            if (DateTime.Now < bus.LicenseDate)
+            {
+                ModelState.AddModelError("", "Ngày cấp phép không phù hợp!!");
+            }
             if (bus.NumberOfSeats <= 0)
             {
                 ModelState.AddModelError("", "Số lượng ghế không thể nhỏ hơn 0!!");
-                return View(bus);
             }
             var checkName = db.Buses.FirstOrDefault(b => b.BusNumber == bus.BusNumber);
             if (checkName == null)
             {
                 if (ModelState.IsValid)
                 {
+                    bus.RegDate = DateTime.Now.Date;
                     db.Buses.Add(bus);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -81,14 +85,14 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BusID,BusStationID,BusName,NumberOfSeats")] Bus bus)
+        public ActionResult Edit(Bus bus)
         {
             if (bus.NumberOfSeats <= 0)
             {
                 ModelState.AddModelError("", "Số lượng ghế không thể nhỏ hơn 0!!");
                 return View(bus);
             }
-            var checkName = db.Buses.FirstOrDefault(b => b.BusNumber == bus.BusName && b.BusID != bus.BusID);
+            var checkName = db.Buses.FirstOrDefault(b => b.BusNumber == bus.BusNumber && b.BusID != bus.BusID);
             if (checkName == null)
             {
                 if (ModelState.IsValid)

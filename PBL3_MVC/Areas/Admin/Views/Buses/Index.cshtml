@@ -16,6 +16,9 @@
             Tên xe
         </th>
         <th>
+            Tên bến
+        </th>
+        <th>
             Biển số xe
         </th>
         <th>
@@ -42,6 +45,9 @@
             @Html.DisplayFor(modelItem => item.BusName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.BusStation.Name)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.BusNumber)
         </td>
         <td>
@@ -51,10 +57,10 @@
             @Html.DisplayFor(modelItem => item.Driver)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LicenseDate)
+            @item.LicenseDate.ToString("yyyy/MM/dd")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RegDate)
+            @item.RegDate.ToString("yyyy/MM/dd")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumberOfSeats)

@@ -16,6 +16,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <style>
+                    .align-right {
+                        margin-left: auto;
+                    }
+                </style>
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("QL Người dùng", "Index", "User", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("QL Bến xe", "Index", "BusStations", new { area = "Admin" }, new { @class = "nav-link" })</li>
@@ -23,8 +28,8 @@
                     <li>@Html.ActionLink("QL Tuyến", "Index", "Routes", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("QL Lịch trình", "Index", "Schedules", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("QL Vé", "Index", "Bills", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;} 
-                    <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;}
+                    <li class="align-right">@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Đăng xuất", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>

@@ -13,10 +13,22 @@
 <table class="table">
     <tr>
         <th>
-            Bến xe
+            Tên xe
         </th>
         <th>
-            Tên xe
+            Biển số xe
+        </th>
+        <th>
+            Người đăng ký
+        </th>
+        <th>
+            Tài xế
+        </th>
+        <th>
+            Ngày cấp
+        </th>
+        <th>
+            Ngày đăng ký
         </th>
         <th>
             Số lượng ghế
@@ -24,22 +36,35 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BusStation.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BusName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfSeats)
-        </td>
-        <td>
-            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.BusID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Driver)
+            </td>
+            <td>
+                @item.LicenseDate.ToString("yyyy/MM/dd")
+            </td>
+            <td>
+                @item.RegDate.ToString("yyyy/MM/dd")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfSeats)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.BusID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.BusID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
+            </td>
+        </tr>
+    }
 
 </table>

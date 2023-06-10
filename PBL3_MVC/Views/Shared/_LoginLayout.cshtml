@@ -16,8 +16,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <style>
+                    .align-right {
+                        margin-left: auto;
+                    }
+                </style>
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Đăng nhập", "SignIn", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="align-right">@Html.ActionLink("Đăng nhập", "SignIn", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Đăng ký", "SignUp", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>

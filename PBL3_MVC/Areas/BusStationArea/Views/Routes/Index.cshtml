@@ -7,9 +7,9 @@
 
 <h2>Danh sách tuyến</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Tạo tuyến mới", "Create", "Routes", new { area = "BusStationArea" }, new { @class = "btn btn-success" })
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -30,15 +30,15 @@
             @Html.DisplayFor(modelItem => item.RouteName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Departure)
+            @Html.DisplayFor(modelItem => item.Departure.LocationName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Destination)
+            @Html.DisplayFor(modelItem => item.Destination.LocationName)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.RouteID }) |
             @Html.ActionLink("Xóa", "Delete", new { id=item.RouteID }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa không?');" })
-        </td>
+        </td>*@
     </tr>
 }
 

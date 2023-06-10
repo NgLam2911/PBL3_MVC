@@ -16,11 +16,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <style>
+                    .align-right {
+                        margin-left: auto;
+                    }
+                </style>
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Đặt vé", "Index", "Booking", new { area = "Customer" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Vé đã đặt", "Index", "Bills", new { area = "Customer" }, new { @class = "nav-link" })</li>
                     @{ var user = Session["User"] as PBL3_MVC.Data.Tables.Account;}
-                    <li>@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Customer" }, new { @class = "nav-link" })</li>
+                    <li class="align-right">@Html.ActionLink(user.UserName, "Index", "Home", new { area = "Customer" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Đăng xuất", "SignOut", "Auth", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
