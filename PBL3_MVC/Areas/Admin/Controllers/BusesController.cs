@@ -88,7 +88,7 @@ namespace PBL3_MVC.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Số lượng ghế không thể nhỏ hơn 0!!");
                 return View(bus);
             }
-            var checkName = db.Buses.FirstOrDefault(b => b.BusName == bus.BusName && b.BusID != bus.BusID);
+            var checkName = db.Buses.FirstOrDefault(b => b.BusNumber == bus.BusName && b.BusID != bus.BusID);
             if (checkName == null)
             {
                 if (ModelState.IsValid)

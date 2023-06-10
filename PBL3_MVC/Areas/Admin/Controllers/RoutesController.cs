@@ -92,7 +92,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "Tên tuyến đường đã tồn tại!!");
             }
-
+            ViewBag.DepartureID = new SelectList(db.Locations, "LocationID", "LocationName", route.DepartureID);
+            ViewBag.DestinationID = new SelectList(db.Locations, "LocationID", "LocationName", route.DestinationID);
             return View(route);
         }
 

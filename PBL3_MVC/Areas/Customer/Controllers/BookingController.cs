@@ -40,15 +40,22 @@ namespace PBL3_MVC.Areas.Customer.Controllers
         public ActionResult ListSchedule(BookingModel model)
         {
             List<ScheduleModel> schedules = db.Schedules
-                .Where(s => s.Route.Departure.LocationName == model.Departure && s.Route.Destination.LocationName == model.Destination && s.DepartureTime >= model.DepartureTime && s.Status == true)
+                .Where(s => s.Route.Departure.LocationName == model.Departure 
+                       && s.Route.Destination.LocationName == model.Destination 
+                       && s.DepartureTime >= model.DepartureTime 
+                       && s.Status == true
+                )
                 .Select(s => new ScheduleModel { 
                     Id = s.ScheduleID,
-                    Bus = new BusModel { BusID = s.Bus.BusID, BusName = s.Bus.BusName }, 
-                    Route = s.Route,
-                    DepatureTime = s.DepartureTime,
-                    DestinationTime = s.DestinationTime,
+                    BusName = s.Bus.BusName,
+                    RouteName = s.Route.RouteName,
+                    Departure = s.Route.Departure.LocationName, 
+                    Destination = s.Route.Destination.LocationName,
+                    DepatureTime = s.DepartureTime, 
+                    DestinationTime = s.DestinationTime, 
                     NumberOfSeat = s.Bus.NumberOfSeats, 
-                    Status = s.Status }).ToList();
+                    Status = s.Status 
+                }).ToList();
             for (int i = 0; i < schedules.Count; i++)
             {
                 var scheduleId = schedules[i].Id;

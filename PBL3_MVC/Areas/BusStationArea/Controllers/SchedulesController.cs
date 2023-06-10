@@ -21,13 +21,15 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
                 .Where(s => s.Bus.BusStationID == userSession.AccountID)
                 .Select(s => new ScheduleModel { 
                     Id = s.ScheduleID,
-                    Bus = new BusModel {BusID = s.Bus.BusID, BusName = s.Bus.BusName },
-                    Route = s.Route,
+                    BusName = s.Bus.BusName,
+                    RouteName = s.Route.RouteName,
+                    Departure = s.Route.Departure.LocationName,
+                    Destination = s.Route.Destination.LocationName,
                     DepatureTime = s.DepartureTime,
                     DestinationTime = s.DestinationTime,
                     NumberOfSeat = s.Bus.NumberOfSeats,
-                    Status = s.Status })
-                .ToList();
+                    Status = s.Status 
+                }).ToList();
             for (int i = 0; i < schedules.Count; i++)
             {
                 var scheduleId = schedules[i].Id;
@@ -86,8 +88,8 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
                 {
                     var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
                     //Init db
-                    var bus = db.Buses.Where(b => b.BusID == schedule.Bus.BusID && b.BusStation.BusStationID == userSession.AccountID).FirstOrDefault();
-                    var route = schedule.Route;
+                    var bus = db.Buses.Where(b => b.BusName == schedule.BusName && b.BusStation.BusStationID == userSession.AccountID).FirstOrDefault();
+                    var route = db.Routes.Where(r => r.RouteName == schedule.RouteName).FirstOrDefault();
 
                     if (bus == null)
                     {
@@ -135,8 +137,8 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
             var schedule = db.Schedules.Find(id);
             ScheduleModel model = new ScheduleModel();
             model.Id = id;
-            model.Bus = new BusModel { BusID = schedule.Bus.BusID, BusName = schedule.Bus.BusName};
-            model.Route = schedule.Route;
+            model.BusName = schedule.Bus.BusName;
+            model.RouteName = schedule.Route.RouteName;
             model.DepatureTime = schedule.DepartureTime;
             model.DestinationTime = schedule.DestinationTime;
             model.Price = 100000;
@@ -154,8 +156,8 @@ namespace PBL3_MVC.Areas.BusStationArea.Controllers
                 {
                     var userSession = Session["User"] as PBL3_MVC.Data.Tables.Account;
                     //Init db
-                    var bus = db.Buses.Where(b => b.BusID == scheduleModel.Bus.BusID && b.BusStation.BusStationID == userSession.AccountID).FirstOrDefault();
-                    var route = scheduleModel.Route;
+                    var bus = db.Buses.Where(b => b.BusName == scheduleModel.BusName && b.BusStation.BusStationID == userSession.AccountID).FirstOrDefault();
+                    var route = db.Routes.Where(r => r.RouteName == scheduleModel.RouteName).FirstOrDefault();
 
                     if (bus == null)
                     {

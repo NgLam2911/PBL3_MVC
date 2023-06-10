@@ -20,7 +20,9 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/BusStations
         public ActionResult Index()
         {
-            List<BusStationModel> busStations = db.BusStations.Select(b => new BusStationModel { Id = b.Account.AccountID, Password = b.Account.Password, UserName = b.Name }).ToList();
+            List<BusStationModel> busStations = db.BusStations
+                .Select(b => new BusStationModel { Id = b.Account.AccountID, Password = b.Account.Password, UserName = b.Name })
+                .ToList();
             return View(busStations);
         }
 

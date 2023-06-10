@@ -11,9 +11,11 @@ namespace PBL3_MVC.Models
     {
         public int Id { get; set; }
         [Required]
-        public BusModel Bus { get; set; }
+        public string BusName { get; set; }
         [Required]
-        public Route Route { get; set; }
+        public string RouteName { get; set; }
+        public string Departure { get; set; }
+        public string Destination { get; set; }
         [DataType(DataType.DateTime), Required]
         public DateTime DepatureTime { get; set; }
         [DataType(DataType.DateTime), Required]

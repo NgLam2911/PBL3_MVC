@@ -19,7 +19,17 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/Schedules
         public ActionResult Index()
         {
-            List<ScheduleModel> schedules = db.Schedules.Select(s => new ScheduleModel { Id = s.ScheduleID, Bus = new BusModel { BusName = s.Bus.BusName, BusID = s.Bus.BusID }, Route = s.Route, DepatureTime = s.DepartureTime, DestinationTime = s.DestinationTime, NumberOfSeat = s.Bus.NumberOfSeats, Status = s.Status }).ToList();
+            List<ScheduleModel> schedules = db.Schedules.Select(s => new ScheduleModel {
+                Id = s.ScheduleID, 
+                BusName = s.Bus.BusName,
+                RouteName = s.Route.RouteName,
+                Departure = s.Route.Departure.LocationName,
+                Destination = s.Route.Destination.LocationName,
+                DepatureTime = s.DepartureTime, 
+                DestinationTime = s.DestinationTime,
+                NumberOfSeat = s.Bus.NumberOfSeats,
+                Status = s.Status 
+            }).ToList();
             for (int i = 0; i < schedules.Count; i++)
             {
                 var scheduleId = schedules[i].Id;
@@ -64,12 +74,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // GET: Admin/Schedules/Create
         public ActionResult Create()
         {
-            HashSet<BusModel> busModels = new HashSet<BusModel>();
-            foreach (Bus bus in db.Buses) {
-                busModels.Add(new BusModel { BusID = bus.BusID, BusName = bus.BusNumber + " - " + bus.BusName });
-            }
-            ViewBag.BusNames = new SelectList(busModels, "BusID", "BusName");
-            ViewBag.RouteNames = new SelectList(db.Routes, "RouteID", "RouteName");
+            ViewBag.BusID = new SelectList(db.Buses, "BusID", "BusName");
+            ViewBag.RouteID = new SelectList(db.Routes, "RouteID", "RouteName");
             return View();
         }
 
@@ -78,14 +84,14 @@ namespace PBL3_MVC.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BusNames,RouteNames,DepartureTime,DestinationTime,Price,NumberOfSeats,Status")]ScheduleModel schedule)
+        public ActionResult Create(ScheduleModel schedule)
         {
             if (schedule.DestinationTime > schedule.DepatureTime && schedule.DepatureTime > DateTime.Now)
             {
                 if (ModelState.IsValid)
                 {
-                    var bus = db.Buses.Where(b => b.BusID == schedule.Bus.BusID).FirstOrDefault();
-                    var route = schedule.Route;
+                    var bus = db.Buses.Where(b => b.BusName == schedule.BusName).FirstOrDefault();
+                    var route = db.Routes.Where(r => r.RouteName == schedule.RouteName).FirstOrDefault();
 
                     if (bus == null)
                     {
@@ -125,13 +131,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Thời gian cho lịch trình không phù hợp!!");
             }
 
-            HashSet<BusModel> busModels = new HashSet<BusModel>();
-            foreach (Bus bus in db.Buses)
-            {
-                busModels.Add(new BusModel { BusID = bus.BusID, BusName = bus.BusNumber + " - " + bus.BusName });
-            }
-            ViewBag.BusNames = new SelectList(busModels, "BusID", "BusName");
-            ViewBag.RouteNames = new SelectList(db.Routes, "RouteID", "RouteName");
+            //ViewBag.BusID = new SelectList(db.Buses, "BusID", "BusName", schedule.BusID);
+            //ViewBag.RouteID = new SelectList(db.Routes, "RouteID", "RouteName", schedule.RouteID);
             return View(schedule);
         }
 
@@ -145,20 +146,15 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             }
             ScheduleModel model = new ScheduleModel();
             model.Id = id;
-            model.Bus = new BusModel { BusID = schedule.BusID, BusName = schedule.Bus.BusNumber + " - " + schedule.Bus.BusName};
-            model.Route = schedule.Route;
+            model.BusName = schedule.Bus.BusName;
+            model.RouteName = schedule.Route.RouteName;
             model.DepatureTime = schedule.DepartureTime;
             model.DestinationTime = schedule.DestinationTime;
-            model.Price = 0; //Deprecated
+            model.Price = 100000;
             model.Status = schedule.Status;
 
-            HashSet<BusModel> busModels = new HashSet<BusModel>();
-            foreach (Bus bus in db.Buses)
-            {
-                busModels.Add(new BusModel { BusID = bus.BusID, BusName = bus.BusNumber + " - " + bus.BusName });
-            }
-            ViewBag.BusNames = new SelectList(busModels, "BusID", "BusName", model.Bus.BusID);
-            ViewBag.RouteNames = new SelectList(db.Routes, "RouteID", "RouteName", model.Route.RouteID);
+            //ViewBag.BusID = new SelectList(db.Buses, "BusID", "BusName", schedule.BusID);
+            //ViewBag.RouteID = new SelectList(db.Routes, "RouteID", "RouteName", schedule.RouteID);
             return View(model);
         }
 
@@ -173,8 +169,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var bus = db.Buses.Where(b => b.BusID == scheduleModel.Bus.BusID).FirstOrDefault();
-                    var route = scheduleModel.Route;
+                    var bus = db.Buses.Where(b => b.BusName == scheduleModel.BusName).FirstOrDefault();
+                    var route = db.Routes.Where(r => r.RouteName == scheduleModel.RouteName).FirstOrDefault();
 
                     if (bus == null)
                     {
@@ -199,6 +195,17 @@ namespace PBL3_MVC.Areas.Admin.Controllers
                     scheduleEdit.Status = scheduleModel.Status;
 
                     db.Entry(scheduleEdit).State = EntityState.Modified;
+
+                    for (int i = 0; i < bus.NumberOfSeats; i++)
+                    {
+                        var seat = db.Seats.Create();
+                        seat.Schedule = scheduleEdit;
+                        seat.SeatNumber = i + 1;
+                        seat.Status = false;
+                        seat.Price = scheduleModel.Price;
+                        seat.Bill = null;
+                        db.Seats.Add(seat);
+                    }
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -208,13 +215,8 @@ namespace PBL3_MVC.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Thời gian cho lịch trình không phù hợp!!");
             }
 
-            HashSet<BusModel> busModels = new HashSet<BusModel>();
-            foreach (Bus bus in db.Buses)
-            {
-                busModels.Add(new BusModel { BusID = bus.BusID, BusName = bus.BusNumber + " - " + bus.BusName });
-            }
-            ViewBag.BusNames = new SelectList(busModels, "BusID", "BusName");
-            ViewBag.RouteNames = new SelectList(db.Routes, "RouteID", "RouteName");
+            //ViewBag.BusID = new SelectList(db.Buses, "BusID", "BusName", schedule.BusID);
+            //ViewBag.RouteID = new SelectList(db.Routes, "RouteID", "RouteName", schedule.RouteID);
             return View(scheduleModel);
         }
 
